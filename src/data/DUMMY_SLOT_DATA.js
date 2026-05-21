@@ -1,0 +1,139 @@
+export const DUMMY_SLOT_DATA = [
+  {
+    id: '1',
+    theatreId: '1',
+    date: new Date().toISOString().split('T')[0],
+    time: '10:00 AM',
+    status: 'Available',
+    soundSystem: 'Dolby Atmos',
+    price: 180,
+  },
+  {
+    id: '2',
+    theatreId: '1',
+    date: new Date().toISOString().split('T')[0],
+    time: '12:30 PM',
+    status: 'Filling Fast',
+    soundSystem: 'IMAX',
+    price: 180,
+  },
+  {
+    id: '3',
+    theatreId: '1',
+    date: new Date().toISOString().split('T')[0],
+    time: '3:00 PM',
+    status: 'Available',
+    soundSystem: '2K',
+    price: 180,
+  },
+  {
+    id: '4',
+    theatreId: '1',
+    date: new Date().toISOString().split('T')[0],
+    time: '5:30 PM',
+    status: 'Full',
+    soundSystem: 'Dolby Atmos',
+    price: 200,
+  },
+
+  {
+    id: '5',
+    theatreId: '1',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '8:00 PM',
+    status: 'Filling Fast',
+    soundSystem: 'IMAX',
+    price: 220,
+  },
+  {
+    id: '6',
+    theatreId: '1',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '10:30 PM',
+    status: 'Available',
+    soundSystem: 'Amour',
+    price: 180,
+  },
+  {
+    id: '7',
+    theatreId: '2',
+    date: new Date().toISOString().split('T')[0],
+    time: '11:00 AM',
+    status: 'Available',
+    soundSystem: '2K',
+    price: 140,
+  },
+  {
+    id: '8',
+    theatreId: '2',
+    date: new Date().toISOString().split('T')[0],
+    time: '2:30 PM',
+    status: 'Available',
+    soundSystem: 'Dolby Atmos',
+    price: 170,
+  },
+  {
+    id: '9',
+    theatreId: '2',
+    date: new Date().toISOString().split('T')[0],
+    time: '6:00 PM',
+    status: 'Filling Fast',
+    soundSystem: 'IMAX',
+    price: 200,
+  },
+  {
+    id: '10',
+    theatreId: '2',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '9:00 AM',
+    status: 'Available',
+    soundSystem: 'Amour',
+    price: 120,
+  },
+  {
+    id: '11',
+    theatreId: '2',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '1:00 PM',
+    status: 'Full',
+    soundSystem: '2K',
+    price: 160,
+  },
+  {
+    id: '12',
+    theatreId: '3',
+    date: new Date().toISOString().split('T')[0],
+    time: '10:15 AM',
+    status: 'Available',
+    soundSystem: 'Dolby Atmos',
+    price: 160,
+  },
+  {
+    id: '13',
+    theatreId: '3',
+    date: new Date().toISOString().split('T')[0],
+    time: '8:30 PM',
+    status: 'Available',
+    soundSystem: 'IMAX',
+    price: 230,
+  },
+  {
+    id: '14',
+    theatreId: '3',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '7:00 PM',
+    status: 'Filling Fast',
+    soundSystem: 'Amour',
+    price: 210,
+  },
+];
