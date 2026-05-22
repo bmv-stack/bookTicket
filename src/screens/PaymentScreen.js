@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
@@ -10,6 +9,10 @@ import {
 import React, { useState } from 'react';
 import FormInput from '../components/formInput';
 import PaymentSuccessModal from '../components/Modals/PaymentSuccess';
+import { styles } from './PaymentScreen.styles';
+import { useDispatch } from 'react-redux';
+import { addBooking } from '../redux/slices/bookingSlice';
+import { formatDate } from '../utils/formatDate';
 
 const PaymentScreen = ({ route, navigation }) => {
   const [form, setForm] = useState({
@@ -17,7 +20,14 @@ const PaymentScreen = ({ route, navigation }) => {
     cvv: '',
     expiry: '',
   });
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const movieName = route.params?.movie;
+  const selectedSeats = route.params?.selectedSeats;
+  const theatre = route.params?.theatre;
+  const date = route.params?.date;
+  const slot = route.params?.slot;
+  console.log('SLot: ', slot);
   const totalPrice = route.params?.totalPrice;
   const gst = (totalPrice / 100) * 18;
   const convenienceFess = totalPrice / 10;
@@ -31,6 +41,17 @@ const PaymentScreen = ({ route, navigation }) => {
   };
 
   const handlePayment = () => {
+    const booking = {
+      id: String(Date.now()),
+      movieName,
+      theatre,
+      selectedSeats,
+      slot,
+      payableAmount,
+      date,
+    };
+    console.log('Booking Data: ', booking);
+    dispatch(addBooking(booking));
     setVisible(true);
     navigation.navigate('Home');
   };
@@ -45,6 +66,38 @@ const PaymentScreen = ({ route, navigation }) => {
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.bookingSummaryContainer}>
+          <Text style={styles.summaryTitle}>Booking Summary</Text>
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Movie: </Text>
+            <Text style={styles.summaryValue}>{movieName.name}</Text>
+          </View>
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Theatre: </Text>
+            <Text style={styles.summaryValue}>{theatre.name}</Text>
+          </View>
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Date: </Text>
+            <Text style={styles.summaryValue}>{formatDate(date)}</Text>
+          </View>
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Slot: </Text>
+            <Text style={styles.summaryValue}>{slot.time}</Text>
+          </View>
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Seats: </Text>
+            <Text style={[styles.summaryValue, { color: '#FF3B30' }]}>
+              {Array.isArray(selectedSeats)
+                ? selectedSeats.join(',')
+                : selectedSeats}
+            </Text>
+          </View>
+        </View>
         <View style={styles.invoiceContainer}>
           <View style={styles.rowContainer}>
             <Text style={styles.priceLabel}>Ticket Price:</Text>
@@ -112,79 +165,3 @@ const PaymentScreen = ({ route, navigation }) => {
 };
 
 export default PaymentScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 20,
-  },
-  invoiceContainer: {
-    height: 250,
-    width: '85%',
-    backgroundColor: '#807676',
-    borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-    marginBottom: 20,
-  },
-  rowContainer: {
-    padding: 9,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  priceLabel: {
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  priceText: {
-    fontWeight: '600',
-    fontSize: 16,
-  },
-  divider: {
-    marginTop: 10,
-    height: 1,
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  finalAmountContainer: {
-    padding: 9,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#cfb3b3',
-    overflow: 'hidden',
-  },
-  formContainer: {
-    marginTop: 15,
-    width: '85%',
-    marginBottom: 30,
-  },
-  formTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 20,
-  },
-  payButton: {
-    backgroundColor: '#FF3B30',
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  payButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-});

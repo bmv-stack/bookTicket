@@ -31,7 +31,9 @@ const MovieCard = ({ movie }) => {
             <View style={styles.divider} />
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>⭐</Text>
-              <Text style={styles.infoText}>{movie.rating}</Text>
+              <Text style={styles.infoText}>
+                {Number(movie.rating.toFixed(1))}
+              </Text>
             </View>
           </View>
           <Text style={styles.movieText} numberOfLines={1}>

@@ -1,10 +1,10 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import React, { useMemo, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { dateListGenerator } from '../utils/dateListGeneration';
-import DateList from '../components/DateList';
-import { DUMMY_THEATRE_DATA } from '../data/DUMMY_THEATRE_DATA';
-import BookingCard from '../components/BookingCard';
+import { dateListGenerator } from '../../utils/dateListGeneration';
+import DateList from '../../components/DateList';
+import { DUMMY_THEATRE_DATA } from '../../data/DUMMY_THEATRE_DATA';
+import BookingCard from '../../components/BookingCard';
+import { styles } from './BookinScreen.styles';
 
 const BookingScreen = ({ route, navigation }) => {
   const dateList = useMemo(() => dateListGenerator(), []);
@@ -48,21 +48,3 @@ const BookingScreen = ({ route, navigation }) => {
 };
 
 export default BookingScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    flex: 1,
-  },
-  dateListContainer: {
-    height: 70,
-    borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5EA',
-    marginBottom: 15,
-  },
-  bookingContainer: {
-    flex: 1,
-  },
-});

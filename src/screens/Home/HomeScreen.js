@@ -1,8 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import React from 'react';
-import AppBar from '../components/AppBar';
-import MovieCard from '../components/MovieCard';
-import { DUMMY_DATA } from '../data/DUMMY_DATA';
+import AppBar from '../../components/AppBar';
+import MovieCard from '../../components/MovieCard';
+import { DUMMY_DATA } from '../../data/DUMMY_DATA';
+import { styles } from './HomeScreen.styles';
 
 const HomeScreen = ({ route }) => {
   const userName = route.params?.userName || 'Guest';
@@ -40,26 +41,3 @@ const HomeScreen = ({ route }) => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  greetingsContainer: {
-    flexDirection: 'row',
-    marginLeft: 10,
-    marginBottom: 10,
-  },
-  greetingText: {
-    fontSize: 20,
-  },
-  recommendedContainer: {
-    marginLeft: 10,
-    marginTop: 30,
-    marginBottom: 20,
-  },
-  recommendedText: {
-    fontWeight: '600',
-    fontSize: 16,
-  },
-});

@@ -1,0 +1,63 @@
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import MyBookingCard from '../../components/MyBookingCard';
+
+const MyBookingsScreen = () => {
+  const myBookings = useSelector(state => state.booking.myBookings);
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={myBookings}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <MyBookingCard item={item} />}
+        contentContainerStyle={myBookings.length === 0 && styles.emptyList}
+        ListEmptyComponent={() => (
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>
+              You haven't booked any tickets yet!
+            </Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+
+export default MyBookingsScreen;
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f5f5f5', padding: 16 },
+  ticketCard: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 12,
+    elevation: 2,
+  },
+  movieTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 4,
+  },
+  detailsText: { fontSize: 14, color: '#666', marginBottom: 2 },
+  priceText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#4CD964',
+    marginTop: 4,
+  },
+  emptyList: {
+    flex: 1,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    color: '#999',
+    marginTop: 40,
+  },
+});

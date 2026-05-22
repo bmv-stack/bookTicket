@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React, { useMemo } from 'react';
 import { DUMMY_SLOT_DATA } from '../data/DUMMY_SLOT_DATA';
 import SlotCard from './SlotCard';
-import { useNavigation } from '@react-navigation/native';
 
 const BookingCard = ({
   movie,
@@ -46,6 +45,7 @@ const BookingCard = ({
                 theatre={{ brand: theatreBrand, name: theatreName }}
                 slot={item}
                 navigation={navigation}
+                date={selectedDate}
               />
             )}
           />

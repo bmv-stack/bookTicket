@@ -10,6 +10,7 @@ const SlotCard = ({
   theatre,
   slot,
   navigation: navProp,
+  date,
 }) => {
   const navigationHook = useNavigation();
   const navigation = navProp || navigationHook;
@@ -19,6 +20,7 @@ const SlotCard = ({
       movie,
       theatre,
       slot,
+      date,
     });
   };
   const getStatusColor = () => {
