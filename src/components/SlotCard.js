@@ -9,11 +9,9 @@ const SlotCard = ({
   movie,
   theatre,
   slot,
-  navigation: navProp,
   date,
 }) => {
-  const navigationHook = useNavigation();
-  const navigation = navProp || navigationHook;
+  const navigation = useNavigation();
 
   const handleSlotPress = () => {
     navigation.navigate('SeatBooking', {
@@ -23,36 +21,77 @@ const SlotCard = ({
       date,
     });
   };
-  const getStatusColor = () => {
+
+  const getStatusStyles = () => {
     switch (status) {
       case 'Available':
-        return '#0a9413';
+        return {
+          border: '#1db954',
+          badge: '#1db954',
+          badgeText: '#fff',
+          dot: '#1db954',
+        };
       case 'Filling Fast':
-        return '#ff9800';
+        return {
+          border: '#ff9800',
+          badge: '#ff9800',
+          badgeText: '#fff',
+          dot: '#ff9800',
+        };
       case 'Full':
-        return '#90797975';
+        return {
+          border: '#ccc',
+          badge: '#eee',
+          badgeText: '#999',
+          dot: '#ccc',
+        };
       default:
-        return '#0a9413';
+        return {
+          border: '#1db954',
+          badge: '#1db954',
+          badgeText: '#fff',
+          dot: '#1db954',
+        };
     }
   };
+
+  const statusStyles = getStatusStyles();
+  const isFull = status === 'Full';
 
   return (
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleSlotPress}
-      disabled={status === 'Full'}
+      disabled={isFull}
     >
       <View
         style={[
           styles.slotContainer,
-          {
-            backgroundColor: getStatusColor(),
-          },
+          { borderColor: statusStyles.border },
+          isFull && styles.disabledSlot,
         ]}
       >
-        <Text style={styles.timeText}>{timing}</Text>
-        {sound && <Text style={styles.soundText}>{sound}</Text>}
-        {status === 'Full' && <Text style={styles.fullText}>FULL</Text>}
+        <View
+          style={[styles.statusDot, { backgroundColor: statusStyles.dot }]}
+        />
+
+        <Text style={[styles.timeText, isFull && styles.mutedText]}>
+          {timing}
+        </Text>
+
+        {sound && (
+          <Text style={[styles.soundText, isFull && styles.mutedText]}>
+            {sound}
+          </Text>
+        )}
+
+        {status !== 'Available' && (
+          <View style={[styles.badge, { backgroundColor: statusStyles.badge }]}>
+            <Text style={[styles.badgeText, { color: statusStyles.badgeText }]}>
+              {status === 'Full' ? 'HOUSEFULL' : 'FAST'}
+            </Text>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -62,32 +101,60 @@ export default SlotCard;
 
 const styles = StyleSheet.create({
   slotContainer: {
-    height: 60,
-    width: 80,
-    borderRadius: 8,
+    height: 80,
+    width: 90,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 6,
     marginVertical: 8,
     paddingHorizontal: 8,
-    paddingVertical: 6,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+    borderWidth: 1.5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  disabledSlot: {
+    backgroundColor: '#f5f5f5',
+    opacity: 0.6,
+  },
+  statusDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    marginBottom: 5,
   },
   timeText: {
     fontSize: 13,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: '700',
+    color: '#111',
     textAlign: 'center',
   },
   soundText: {
     fontSize: 9,
-    color: '#fff',
-    marginTop: 2,
+    color: '#888',
+    marginTop: 3,
     textAlign: 'center',
+    fontWeight: '500',
+    letterSpacing: 0.3,
+    textTransform: 'uppercase',
   },
-  fullText: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 2,
+  mutedText: {
+    color: '#aaa',
+  },
+  badge: {
+    marginTop: 5,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  badgeText: {
+    fontSize: 8,
+    fontWeight: '800',
+    letterSpacing: 0.5,
   },
 });

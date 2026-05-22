@@ -20,13 +20,23 @@ const BookingCard = ({
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
+        <View style={styles.brandPill}>
+          <Text style={styles.brandText}>{theatreBrand}</Text>
+        </View>
         <View style={styles.theatreInfo}>
-          <Text style={styles.theatreLabel}>📍 {theatreBrand}</Text>
           <Text style={styles.theatreName}>{theatreName}</Text>
+          <View style={styles.locationRow}>
+            <Text style={styles.locationIcon}>📍</Text>
+            <Text style={styles.locationText}>{theatreBrand}</Text>
+          </View>
         </View>
       </View>
 
-      <View style={styles.divider} />
+      <View style={styles.dividerRow}>
+        <View style={styles.dividerLine} />
+        <Text style={styles.dividerLabel}>AVAILABLE SHOWS</Text>
+        <View style={styles.dividerLine} />
+      </View>
 
       <View style={styles.slotsContainer}>
         {filteredSlots.length > 0 ? (
@@ -50,11 +60,32 @@ const BookingCard = ({
             )}
           />
         ) : (
-          <Text style={styles.noShowsText}>
-            No shows available for this date
-          </Text>
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyIcon}>🎬</Text>
+            <Text style={styles.noShowsText}>No shows available</Text>
+            <Text style={styles.noShowsSubText}>
+              Try selecting a different date
+            </Text>
+          </View>
         )}
       </View>
+
+      {filteredSlots.length > 0 && (
+        <View style={styles.legend}>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: '#1db954' }]} />
+            <Text style={styles.legendText}>Available</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: '#ff9800' }]} />
+            <Text style={styles.legendText}>Filling Fast</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: '#ccc' }]} />
+            <Text style={styles.legendText}>Full</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -64,53 +95,122 @@ export default BookingCard;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 16,
     marginHorizontal: 12,
     marginVertical: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    elevation: 2,
+    paddingVertical: 16,
+    paddingHorizontal: 14,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
   headerContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 14,
+    gap: 10,
+  },
+  brandPill: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 44,
+  },
+  brandText: {
+    fontSize: 18,
   },
   theatreInfo: {
     flex: 1,
   },
-  theatreLabel: {
-    fontSize: 12,
-    color: '#666',
-    marginBottom: 4,
-  },
   theatreName: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#333',
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#111',
+    marginBottom: 3,
   },
-  divider: {
-    height: 1,
-    backgroundColor: '#e0e0e0',
-    marginVertical: 10,
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+  },
+  locationIcon: {
+    fontSize: 10,
+  },
+  locationText: {
+    fontSize: 11,
+    color: '#888',
+    fontWeight: '500',
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 12,
+    gap: 8,
+  },
+  dividerLine: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#e5e5e5',
+  },
+  dividerLabel: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: '#bbb',
+    letterSpacing: 1,
   },
   slotsContainer: {
-    marginTop: 8,
+    marginTop: 4,
   },
   row: {
     flexGrow: 1,
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    paddingVertical: 24,
+    gap: 4,
+  },
+  emptyIcon: {
+    fontSize: 28,
+    marginBottom: 6,
   },
   noShowsText: {
-    textAlign: 'center',
-    color: '#999',
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#555',
+  },
+  noShowsSubText: {
     fontSize: 12,
-    paddingVertical: 16,
+    color: '#aaa',
+  },
+  legend: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 16,
+    marginTop: 14,
+    paddingTop: 12,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: '#eee',
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  legendDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+  },
+  legendText: {
+    fontSize: 11,
+    color: '#888',
+    fontWeight: '500',
   },
 });

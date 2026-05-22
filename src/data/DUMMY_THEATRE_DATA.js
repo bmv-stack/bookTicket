@@ -1,7 +1,7 @@
 export const DUMMY_THEATRE_DATA = [
   {
     id: '1',
-    brand: 'PVR Cinemas',
+    brand: 'PVR',
     name: 'PVR Cinemas - DLF Mall, Delhi',
     city: 'Delhi',
   },
@@ -19,7 +19,7 @@ export const DUMMY_THEATRE_DATA = [
   },
   {
     id: '4',
-    brand: 'PVR Cinemas',
+    brand: 'PVR',
     name: 'PVR Cinemas - Phoenix Market City, Pune',
     city: 'Pune',
   },
@@ -43,7 +43,7 @@ export const DUMMY_THEATRE_DATA = [
   },
   {
     id: '8',
-    brand: 'PVR Cinemas',
+    brand: 'PVR',
     name: 'PVR Cinemas - Nexus Seawoods, Navi Mumbai',
     city: 'Navi Mumbai',
   },

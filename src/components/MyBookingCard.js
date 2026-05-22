@@ -19,7 +19,6 @@ const MyBookingCard = ({ item }) => {
           onPress: () => dispatch(cancelBooking(id)),
         },
       ],
-      console.log('ID of Item: ', item.id),
     );
   };
   return (

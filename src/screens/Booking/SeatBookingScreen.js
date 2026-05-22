@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { seatGenerator } from '../../utils/seatGenerator';
 import { DUMMY_SLOT_DATA } from '../../data/DUMMY_SLOT_DATA';
 import { styles } from './SeatBookingScreen.styles';
+//import Icon from 'react-native-vector-icons/Ionicons';
 
 const SeatBookingScreen = ({ navigation, route }) => {
   const { movie, theatre, slot } = route.params;
   const date = route.params?.date;
-  console.log('Date on Payment Screen: ', date);
   const [seats, setSeats] = useState(seatGenerator());
   const [selectedSeats, setSelectedSeats] = useState([]);
   const pricePerSeat = DUMMY_SLOT_DATA.find(slot => slot.price);

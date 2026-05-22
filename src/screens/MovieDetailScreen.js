@@ -24,7 +24,7 @@ const MovieDetailScreen = ({ route, navigation }) => {
         <View style={styles.divider} />
         <View style={styles.infoBox}>
           <Text style={styles.infoLabel}>Rating</Text>
-          <Text style={styles.infoValue}>⭐ {movie.rating}</Text>
+          <Text style={styles.infoValue}>{movie.rating}</Text>
         </View>
       </View>
       <View style={styles.descriptionContainer}>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList } from 'react-native';
 import React, { useState } from 'react';
 import MovieCard from '../components/MovieCard';
 import { DUMMY_DATA } from '../data/DUMMY_DATA';
