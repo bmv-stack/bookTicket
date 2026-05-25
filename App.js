@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './src/screens/Auth/LoginScreen';
 import SignUpScreen from './src/screens/Auth/SignUpScreen';
@@ -16,7 +16,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { store } from './src/redux/store';
 import { seedDatabaseIfEmpty } from './src/database/seeder';
 import { initDb } from './src/database/db';
-import { useEffect, useState } from 'react';
+import { AuthProvider } from './src/contexts/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,7 @@ const RootStack = () => {
         //headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
       }}
-      initialRouteName="Home"
+      initialRouteName="Login"
     >
       <Stack.Screen
         name="Login"
@@ -88,19 +88,15 @@ function App() {
   if (!dbReady) return null;
   return (
     // <Provider store={store}>
-    <NavigationContainer>
-      <SafeAreaProvider>
-        <RootStack />
-      </SafeAreaProvider>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <RootStack />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </AuthProvider>
     // </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

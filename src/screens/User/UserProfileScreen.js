@@ -4,13 +4,30 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { menuItems } from '../../data/USER_OPTIONS_DATA';
 import UserOptions from '../../components/UserOptions';
+import { useAuth } from '../../contexts/AuthContext';
 
 const UserProfileScreen = ({ navigation }) => {
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert('Logout', 'Are you sure you want to log out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: () => {
+          logout();
+          navigation.replace('Login');
+        },
+      },
+    ]);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerSection}>
@@ -41,7 +58,7 @@ const UserProfileScreen = ({ navigation }) => {
         style={styles.menuContainer}
       />
 
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
     </SafeAreaView>

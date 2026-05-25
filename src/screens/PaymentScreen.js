@@ -11,8 +11,10 @@ import FormInput from '../components/formInput';
 import PaymentSuccessModal from '../components/Modals/PaymentSuccess';
 import { styles } from './PaymentScreen.styles';
 //import { useDispatch } from 'react-redux';
-import { addBooking } from '../redux/slices/bookingSlice';
+//import { addBooking } from '../redux/slices/bookingSlice';
 import { formatDate } from '../utils/formatDate';
+import { movieService } from '../database/movieService';
+import { useAuth } from '../contexts/AuthContext';
 
 const PaymentScreen = ({ route, navigation }) => {
   const [form, setForm] = useState({
@@ -27,7 +29,7 @@ const PaymentScreen = ({ route, navigation }) => {
   const theatre = route.params?.theatre;
   const date = route.params?.date;
   const slot = route.params?.slot;
-  console.log('SLot: ', slot);
+  const { user } = useAuth();
   const totalPrice = route.params?.totalPrice;
   const gst = (totalPrice / 100) * 18;
   const convenienceFess = totalPrice / 10;
@@ -40,19 +42,31 @@ const PaymentScreen = ({ route, navigation }) => {
     }));
   };
 
-  const handlePayment = () => {
-    const booking = {
-      id: String(Date.now()),
-      movieName,
-      theatre,
+  const handlePayment = async () => {
+    if (!slot?.id || !selectedSeats) return;
+
+    console.log('userId:', user.id);
+    console.log('slotId:', slot.id, typeof slot.id);
+    console.log('seats:', selectedSeats);
+    console.log('amount:', payableAmount);
+    console.log('date:', date);
+
+    const booking = await movieService.createBooking(
+      user?.id,
+      slot.id,
       selectedSeats,
-      slot,
       payableAmount,
       date,
-    };
-    console.log('Booking Data: ', booking);
-    // dispatch(addBooking(booking));
-    setVisible(true);
+    );
+    if (booking) {
+      console.log('Booking done');
+      setVisible(true);
+    } else {
+      console.log('Failed to book a seat');
+    }
+  };
+  const handleModalClose = () => {
+    setVisible(false);
     navigation.navigate('Home');
   };
 
@@ -158,7 +172,7 @@ const PaymentScreen = ({ route, navigation }) => {
       <PaymentSuccessModal
         visible={visible}
         message="Payment Successful"
-        onClose={() => setVisible(false)}
+        onClose={handleModalClose}
       />
     </KeyboardAvoidingView>
   );

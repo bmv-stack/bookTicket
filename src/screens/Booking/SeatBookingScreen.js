@@ -1,17 +1,31 @@
 import { Text, View, TouchableOpacity, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { seatGenerator } from '../../utils/seatGenerator';
-import { DUMMY_SLOT_DATA } from '../../data/DUMMY_SLOT_DATA';
+import { movieService } from '../../database/movieService';
 import { styles } from './SeatBookingScreen.styles';
 
 const SeatBookingScreen = ({ navigation, route }) => {
   const { movie, theatre, slot } = route.params;
   const date = route.params?.date;
   console.log('Date on Payment Screen: ', date);
-  const [seats, setSeats] = useState(seatGenerator());
+  const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const pricePerSeat = DUMMY_SLOT_DATA.find(slot => slot.price);
   const totalPrice = slot.price * selectedSeats.length;
+
+  useEffect(() => {
+    const dbSeats = async () => {
+      const newSeats = seatGenerator();
+      const takenSeats = await movieService.getBookedSeats(slot.slotId);
+      const syncedSeats = newSeats.map(seat => {
+        if (takenSeats.includes(seat.id)) {
+          return { ...seat, status: 'reserved' };
+        }
+        return seat;
+      });
+      setSeats(syncedSeats);
+    };
+    dbSeats();
+  }, [slot.slotId]);
 
   const handleSeatPress = seat => {
     if (seat.status === 'empty' || seat.status === 'reserved') return;

@@ -2,8 +2,11 @@ import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
 import { styles } from './LoginScreen.styles';
+import { movieService } from '../../database/movieService';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
+  const { login } = useAuth();
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -16,12 +19,18 @@ const LoginScreen = ({ navigation }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.email || !form.password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
-    Alert.alert('Success', `Email: ${form.email}\nPassword: ${form.password}`);
+    const user = await movieService.logUser(form.email, form.password);
+    console.log('Logged in user:', JSON.stringify(user));
+    if (!user) {
+      Alert.alert('Invalid Email or Password');
+      return;
+    }
+    login(user);
     navigation.navigate('Home');
   };
   const handleCreateNow = () => {

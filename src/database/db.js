@@ -56,6 +56,9 @@ export const initDb = async () => {
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
         FOREIGN KEY (slot_id) REFERENCES slots(id) ON DELETE CASCADE);`,
     );
+    await db.execute(
+      `INSERT OR IGNORE INTO users (id, name, email, password) VALUES (1, 'Guest', 'guest@test.com', 'password123');`,
+    );
     console.log('Database created successfully');
   } catch (error) {
     console.error('Unable to create the database', error);

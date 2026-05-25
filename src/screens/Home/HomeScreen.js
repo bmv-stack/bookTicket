@@ -14,7 +14,8 @@ const HomeScreen = ({ route }) => {
     };
     fetchMovies();
   }, []);
-  const userName = route.params?.userName || 'Guest';
+  const userName = route.params?.username;
+  console.log('Username: ', userName);
   return (
     <AppBar>
       <View style={styles.container}>

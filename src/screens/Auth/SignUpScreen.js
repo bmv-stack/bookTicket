@@ -2,6 +2,7 @@ import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
 import { styles } from './SignUpScreen.styles';
+import { movieService } from '../../database/movieService';
 
 const SignUpScreen = ({ navigation }) => {
   const [form, setForm] = useState({
@@ -19,7 +20,7 @@ const SignUpScreen = ({ navigation }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
       !form.firstName ||
       !form.lastName ||
@@ -32,6 +33,20 @@ const SignUpScreen = ({ navigation }) => {
     }
     if (form.password !== form.confirmPassword) {
       Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+    const fullName = `${form.firstName} ${form.lastName}`;
+    const result = await movieService.addUser(
+      fullName,
+      form.email,
+      form.password,
+    );
+    if (result === 'duplicate') {
+      Alert.alert('User already exists. Please Sign In instead of Sign Up');
+      return;
+    }
+    if (!result) {
+      Alert.alert('Unable to add the user, please try again later');
       return;
     }
     Alert.alert('Success', 'Account created successfully!');

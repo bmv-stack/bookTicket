@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import { formatDate } from '../utils/formatDate';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 import { cancelBooking } from '../redux/slices/bookingSlice';
 
 const MyBookingCard = ({ item }) => {
-  const dispatch = useDispatch();
-
   const handleCancel = (id, movieName) => {
     Alert.alert(
       `Cancel booking for ${movieName}?`,
@@ -16,27 +14,28 @@ const MyBookingCard = ({ item }) => {
         {
           text: 'Yes',
           style: 'destructive',
-          onPress: () => dispatch(cancelBooking(id)),
+          onPress: () => console.log('Cancel booking ID: ', id),
         },
       ],
-      console.log('ID of Item: ', item.id),
     );
   };
   return (
     <View style={styles.ticketCard}>
-      <Text style={styles.movieTitle}>{item.movieName.name}</Text>
-      <Text style={styles.detailsText}>Location: {item.theatre.name}</Text>
+      <Text style={styles.movieTitle}>{item.movie_name}</Text>
+      <Text style={styles.detailsText}>Location: {item.theatre_name}</Text>
       <Text style={styles.detailsText}>
-        Booked Seats: {item.selectedSeats?.join(', ')}
+        Booked Seats: {item.selected_seats}
       </Text>
-      <Text style={styles.detailsText}>Date: {formatDate(item.date)}</Text>
-      <Text style={styles.detailsText}>Slot: {item.slot.time}</Text>
-      <Text style={styles.priceText}>Paid: ₹{item.payableAmount}</Text>
+      <Text style={styles.detailsText}>
+        Date: {formatDate(item.booking_date)}
+      </Text>
+      <Text style={styles.detailsText}>Slot: {item.slot_time}</Text>
+      <Text style={styles.priceText}>Paid: ₹{item.payable_amount}</Text>
 
       <TouchableOpacity
         style={styles.cancelButton}
         activeOpacity={0.5}
-        onPress={() => handleCancel(item.id, item.movieName.name)}
+        onPress={() => handleCancel(item.id, item.movie_name)}
       >
         <Text style={styles.cancelButtonText}>Cancel Booking</Text>
       </TouchableOpacity>
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 16,
     borderRadius: 8,
-    marginBottom: 12,
     elevation: 2,
   },
   movieTitle: {

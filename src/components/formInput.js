@@ -13,6 +13,7 @@ const FormInput = ({ label, value, onChangeText, placeholder, ...props }) => {
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor="#BCBCBC"
+        autoCapitalize="none"
         {...props}
       ></TextInput>
     </View>

@@ -1,17 +1,33 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
 //import { useSelector } from 'react-redux';
 import MyBookingCard from '../../components/MyBookingCard';
+import { movieService } from '../../database/movieService';
+import { useAuth } from '../../contexts/AuthContext';
 
-const MyBookingsScreen = () => {
+const MyBookingsScreen = ({ navigation }) => {
   //const myBookings = useSelector(state => state.booking.myBookings);
+  const { user } = useAuth();
+  const [bookings, setBookings] = useState([]);
+  useEffect(() => {
+    const getBookings = async () => {
+      const data = await movieService.getBookings(user?.id);
+      if (data) {
+        console.log('Booking Submitted');
+      }
+      setBookings(data);
+    };
+    getBookings();
+  }, [user?.id]);
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={null}
+        showsVerticalScrollIndicator={false}
+        data={bookings}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <MyBookingCard item={item} />}
-        contentContainerStyle={myBookings.length === 0 && styles.emptyList}
+        contentContainerStyle={bookings.length === 0 && styles.emptyList}
         ListEmptyComponent={() => (
           <View style={styles.emptyContainer}>
             <Text style={styles.emptyText}>
