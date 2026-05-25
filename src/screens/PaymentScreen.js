@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import FormInput from '../components/formInput';
 import PaymentSuccessModal from '../components/Modals/PaymentSuccess';
 import { styles } from './PaymentScreen.styles';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 import { addBooking } from '../redux/slices/bookingSlice';
 import { formatDate } from '../utils/formatDate';
 
@@ -20,7 +20,7 @@ const PaymentScreen = ({ route, navigation }) => {
     cvv: '',
     expiry: '',
   });
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const movieName = route.params?.movie;
   const selectedSeats = route.params?.selectedSeats;
@@ -51,7 +51,7 @@ const PaymentScreen = ({ route, navigation }) => {
       date,
     };
     console.log('Booking Data: ', booking);
-    dispatch(addBooking(booking));
+    // dispatch(addBooking(booking));
     setVisible(true);
     navigation.navigate('Home');
   };

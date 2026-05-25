@@ -11,7 +11,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
   const [seats, setSeats] = useState(seatGenerator());
   const [selectedSeats, setSelectedSeats] = useState([]);
   const pricePerSeat = DUMMY_SLOT_DATA.find(slot => slot.price);
-  const totalPrice = pricePerSeat.price * selectedSeats.length;
+  const totalPrice = slot.price * selectedSeats.length;
 
   const handleSeatPress = seat => {
     if (seat.status === 'empty' || seat.status === 'reserved') return;
@@ -79,7 +79,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
           <View style={styles.movieDetailsRow}>
             <Text style={styles.movieDetail}>📍 {theatre.name}</Text>
             <Text style={styles.movieDetail}>•</Text>
-            <Text style={styles.movieDetail}>🕐 {slot.time}</Text>
+            <Text style={styles.movieDetail}>🕐 {slot.slotTime}</Text>
           </View>
         </View>
       </View>

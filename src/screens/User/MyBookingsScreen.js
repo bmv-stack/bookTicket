@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import MyBookingCard from '../../components/MyBookingCard';
 
 const MyBookingsScreen = () => {
-  const myBookings = useSelector(state => state.booking.myBookings);
+  //const myBookings = useSelector(state => state.booking.myBookings);
   return (
     <View style={styles.container}>
       <FlatList
-        data={myBookings}
+        data={null}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <MyBookingCard item={item} />}
         contentContainerStyle={myBookings.length === 0 && styles.emptyList}

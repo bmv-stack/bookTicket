@@ -1,22 +1,15 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React, { useMemo } from 'react';
-import { DUMMY_SLOT_DATA } from '../data/DUMMY_SLOT_DATA';
+import React from 'react';
 import SlotCard from './SlotCard';
 
 const BookingCard = ({
+  slots,
   movie,
-  theatreId,
   theatreBrand,
   theatreName,
   selectedDate,
   navigation,
 }) => {
-  const filteredSlots = useMemo(() => {
-    return DUMMY_SLOT_DATA.filter(
-      slot => slot.theatreId === theatreId && slot.date === selectedDate,
-    );
-  }, [theatreId, selectedDate]);
-
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -29,12 +22,12 @@ const BookingCard = ({
       <View style={styles.divider} />
 
       <View style={styles.slotsContainer}>
-        {filteredSlots.length > 0 ? (
+        {slots.length > 0 ? (
           <FlatList
             scrollEnabled={false}
             numColumns={3}
             columnWrapperStyle={styles.row}
-            data={filteredSlots}
+            data={slots}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
               <SlotCard
@@ -104,7 +97,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexGrow: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginBottom: 8,
   },
   noShowsText: {

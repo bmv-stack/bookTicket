@@ -2,6 +2,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '1',
     theatreId: '1',
+    movieId: '3',
     date: new Date().toISOString().split('T')[0],
     time: '10:00 AM',
     status: 'Available',
@@ -11,6 +12,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '2',
     theatreId: '1',
+    movieId: '5',
     date: new Date().toISOString().split('T')[0],
     time: '12:30 PM',
     status: 'Filling Fast',
@@ -20,6 +22,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '3',
     theatreId: '1',
+    movieId: '12',
     date: new Date().toISOString().split('T')[0],
     time: '3:00 PM',
     status: 'Available',
@@ -29,6 +32,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '4',
     theatreId: '1',
+    movieId: '1',
     date: new Date().toISOString().split('T')[0],
     time: '5:30 PM',
     status: 'Full',
@@ -39,6 +43,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '5',
     theatreId: '1',
+    movieId: '8',
     date: new Date(new Date().setDate(new Date().getDate() + 1))
       .toISOString()
       .split('T')[0],
@@ -50,6 +55,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '6',
     theatreId: '1',
+    movieId: '16',
     date: new Date(new Date().setDate(new Date().getDate() + 1))
       .toISOString()
       .split('T')[0],
@@ -61,6 +67,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '7',
     theatreId: '2',
+    movieId: '2',
     date: new Date().toISOString().split('T')[0],
     time: '11:00 AM',
     status: 'Available',
@@ -70,6 +77,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '8',
     theatreId: '2',
+    movieId: '11',
     date: new Date().toISOString().split('T')[0],
     time: '2:30 PM',
     status: 'Available',
@@ -79,6 +87,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '9',
     theatreId: '2',
+    movieId: '7',
     date: new Date().toISOString().split('T')[0],
     time: '6:00 PM',
     status: 'Filling Fast',
@@ -88,6 +97,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '10',
     theatreId: '2',
+    movieId: '14',
     date: new Date(new Date().setDate(new Date().getDate() + 1))
       .toISOString()
       .split('T')[0],
@@ -99,6 +109,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '11',
     theatreId: '2',
+    movieId: '4',
     date: new Date(new Date().setDate(new Date().getDate() + 1))
       .toISOString()
       .split('T')[0],
@@ -110,6 +121,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '12',
     theatreId: '3',
+    movieId: '9',
     date: new Date().toISOString().split('T')[0],
     time: '10:15 AM',
     status: 'Available',
@@ -119,6 +131,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '13',
     theatreId: '3',
+    movieId: '15',
     date: new Date().toISOString().split('T')[0],
     time: '8:30 PM',
     status: 'Available',
@@ -128,6 +141,7 @@ export const DUMMY_SLOT_DATA = [
   {
     id: '14',
     theatreId: '3',
+    movieId: '6',
     date: new Date(new Date().setDate(new Date().getDate() + 1))
       .toISOString()
       .split('T')[0],
@@ -135,5 +149,17 @@ export const DUMMY_SLOT_DATA = [
     status: 'Filling Fast',
     soundSystem: 'Amour',
     price: 210,
+  },
+  {
+    id: '15',
+    theatreId: '2',
+    movieId: '3',
+    date: new Date(new Date().setDate(new Date().getDate() + 1))
+      .toISOString()
+      .split('T')[0],
+    time: '4:00 PM',
+    status: 'Available',
+    soundSystem: 'Dolby Atmos',
+    price: 180,
   },
 ];

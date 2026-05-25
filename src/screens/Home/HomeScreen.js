@@ -1,11 +1,19 @@
 import { FlatList, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '../../components/AppBar';
 import MovieCard from '../../components/MovieCard';
-import { DUMMY_DATA } from '../../data/DUMMY_DATA';
+import { movieService } from '../../database/movieService';
 import { styles } from './HomeScreen.styles';
 
 const HomeScreen = ({ route }) => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const data = await movieService.getAllMovies();
+      setMovies(data);
+    };
+    fetchMovies();
+  }, []);
   const userName = route.params?.userName || 'Guest';
   return (
     <AppBar>
@@ -25,8 +33,8 @@ const HomeScreen = ({ route }) => {
             <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
-              data={DUMMY_DATA}
-              keyExtractor={item => item.id}
+              data={movies}
+              keyExtractor={item => String(item.id)}
               ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
               renderItem={({ item }) => <MovieCard movie={item} />}
             />

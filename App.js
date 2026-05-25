@@ -12,8 +12,11 @@ import UserProfileScreen from './src/screens/User/UserProfileScreen';
 import MyBookingsScreen from './src/screens/User/MyBookingsScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider } from 'react-redux';
-import { store } from './src/redux/store';
+// import { Provider } from 'react-redux';
+// import { store } from './src/redux/store';
+import { seedDatabaseIfEmpty } from './src/database/seeder';
+import { initDb } from './src/database/db';
+import { useEffect, useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,14 +76,24 @@ const RootStack = () => {
   );
 };
 function App() {
+  const [dbReady, setDbReady] = useState(false);
+  useEffect(() => {
+    const setup = async () => {
+      await initDb();
+      await seedDatabaseIfEmpty();
+      setDbReady(true);
+    };
+    setup();
+  }, []);
+  if (!dbReady) return null;
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <SafeAreaProvider>
-          <RootStack />
-        </SafeAreaProvider>
-      </NavigationContainer>
-    </Provider>
+    // <Provider store={store}>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <RootStack />
+      </SafeAreaProvider>
+    </NavigationContainer>
+    // </Provider>
   );
 }
 
