@@ -14,7 +14,7 @@ const BookingCard = ({
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={styles.theatreInfo}>
-          <Text style={styles.theatreLabel}>📍 {theatreBrand}</Text>
+          <Text style={styles.theatreLabel}>{theatreBrand}</Text>
           <Text style={styles.theatreName}>{theatreName}</Text>
         </View>
       </View>

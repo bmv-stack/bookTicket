@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const MovieCard = ({ movie }) => {
   const navigation = useNavigation();
@@ -25,12 +26,17 @@ const MovieCard = ({ movie }) => {
           />
           <View style={styles.movieInfo}>
             <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>⏱</Text>
+              <Icon
+                name="time"
+                size={16}
+                color="#000"
+                style={styles.infoItem}
+              />
               <Text style={styles.infoText}>{movie.duration}</Text>
             </View>
             <View style={styles.divider} />
             <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>⭐</Text>
+              <Icon name="star" size={16} color="#e1da11" />
               <Text style={styles.infoText}>
                 {Number(movie.rating.toFixed(1))}
               </Text>

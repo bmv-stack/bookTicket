@@ -27,7 +27,7 @@ const RootStack = () => {
         //headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
       }}
-      initialRouteName="Login"
+      initialRouteName="Home"
     >
       <Stack.Screen
         name="Login"

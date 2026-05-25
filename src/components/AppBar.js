@@ -17,10 +17,10 @@ const AppBar = ({ title = 'TicketBook', children }) => {
     <View style={styles.root}>
       <SafeAreaView>
         <View style={styles.container}>
-          <View style={[styles.align, { paddingLeft: 10 }]}>
+          <View style={styles.align}>
             <Text style={styles.appTitle}>{title}</Text>
           </View>
-          <View style={[styles.align, { paddingRight: 15 }]}>
+          <View style={styles.alignRight}>
             <TouchableOpacity onPress={handleSearch}>
               <Icon name="search" size={22} color="#000" />
             </TouchableOpacity>
@@ -47,13 +47,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
     height: 60,
+    padding: 10,
   },
   appTitle: {
     fontSize: 24,
     fontWeight: 'bold',
   },
-  align: {
+  alignLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  alignRight: {
+    flexDirection: 'row',
+    gap: 20,
   },
 });
