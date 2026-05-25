@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { seatGenerator } from '../../utils/seatGenerator';
 import { movieService } from '../../database/movieService';
@@ -14,18 +14,22 @@ const SeatBookingScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     const dbSeats = async () => {
-      const newSeats = seatGenerator();
-      const takenSeats = await movieService.getBookedSeats(slot.slotId);
+      const takenSeats = (await movieService.getBookedSeats(slot.id)) ?? [];
+      const newSeats = seatGenerator(takenSeats);
+      console.log('Taken seats from DB:', takenSeats);
       const syncedSeats = newSeats.map(seat => {
         if (takenSeats.includes(seat.id)) {
-          return { ...seat, status: 'reserved' };
+          return {
+            ...seat,
+            status: takenSeats.includes(seat.id) ? 'reserved' : seat.status,
+          };
         }
         return seat;
       });
       setSeats(syncedSeats);
     };
     dbSeats();
-  }, [slot.slotId]);
+  }, [slot.id]);
 
   const handleSeatPress = seat => {
     if (seat.status === 'empty' || seat.status === 'reserved') return;
@@ -45,7 +49,22 @@ const SeatBookingScreen = ({ navigation, route }) => {
       setSelectedSeats([...selectedSeats, seat.id]);
     }
   };
-  const handleBooking = () => {
+  const handleBooking = async () => {
+    const availability = await movieService.checkSeats(slot.id, selectedSeats);
+
+    if (!availability.available) {
+      Alert.alert(
+        'Seats unavailable',
+        `Seat ${availability.conflicting.join(
+          ',',
+        )} are booked. Please select another seats`,
+      );
+      const takenSeats = await movieService.getBookedSeats(slot.id);
+      const newSeats = seatGenerator(takenSeats);
+      setSeats(newSeats);
+      setSelectedSeats([]);
+      return;
+    }
     navigation.navigate('Payment', {
       totalPrice: totalPrice,
       theatre: theatre,
@@ -93,7 +112,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
           <View style={styles.movieDetailsRow}>
             <Text style={styles.movieDetail}>📍 {theatre.name}</Text>
             <Text style={styles.movieDetail}>•</Text>
-            <Text style={styles.movieDetail}>🕐 {slot.slotTime}</Text>
+            <Text style={styles.movieDetail}>🕐 {slot.time}</Text>
           </View>
         </View>
       </View>

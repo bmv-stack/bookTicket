@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../components/formInput';
@@ -46,10 +47,6 @@ const PaymentScreen = ({ route, navigation }) => {
     if (!slot?.id || !selectedSeats) return;
 
     console.log('userId:', user.id);
-    console.log('slotId:', slot.id, typeof slot.id);
-    console.log('seats:', selectedSeats);
-    console.log('amount:', payableAmount);
-    console.log('date:', date);
 
     const booking = await movieService.createBooking(
       user?.id,

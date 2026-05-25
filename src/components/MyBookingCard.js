@@ -3,8 +3,9 @@ import React from 'react';
 import { formatDate } from '../utils/formatDate';
 //import { useDispatch } from 'react-redux';
 import { cancelBooking } from '../redux/slices/bookingSlice';
+import { movieService } from '../database/movieService';
 
-const MyBookingCard = ({ item }) => {
+const MyBookingCard = ({ item, onCancelled }) => {
   const handleCancel = (id, movieName) => {
     Alert.alert(
       `Cancel booking for ${movieName}?`,
@@ -14,7 +15,14 @@ const MyBookingCard = ({ item }) => {
         {
           text: 'Yes',
           style: 'destructive',
-          onPress: () => console.log('Cancel booking ID: ', id),
+          onPress: async () => {
+            const result = await movieService.cancelBooking(id);
+            if (result) {
+              onCancelled();
+            } else {
+              Alert.alert('Unable to cancel the booking');
+            }
+          },
         },
       ],
     );

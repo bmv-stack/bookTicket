@@ -136,4 +136,45 @@ export const movieService = {
       return [];
     }
   },
+  checkSeats: async (slotId, seatsArray) => {
+    try {
+      const result = await db.execute(
+        `SELECT selected_seats FROM bookings WHERE slot_id = ?;`,
+        [Number(slotId)],
+      );
+      if (result.rows.length === 0) return { available: true, conflicting: [] };
+
+      const bookedSeats = result.rows.flatMap(row => {
+        try {
+          const parsed = JSON.parse(row.selected_seats);
+          return Array.isArray(parsed)
+            ? parsed
+            : row.selected_seats.split(',').map(s => s.trim());
+        } catch {
+          return row.selected_seats.split(',').map(s => s.trim());
+        }
+      });
+
+      const conflicting = seatsArray.filter(seat => bookedSeats.includes(seat));
+
+      return {
+        available: conflicting.length === 0,
+        conflicting: conflicting,
+      };
+    } catch (error) {
+      console.error('Failed to check seats', error);
+      return { available: false, conflicting: [] };
+    }
+  },
+  cancelBooking: async bookingId => {
+    try {
+      const result = await db.execute(`DELETE FROM bookings WHERE id = ?;`, [
+        Number(bookingId),
+      ]);
+      return result.rowsAffected > 0;
+    } catch (error) {
+      console.error('Failed to cacel booking, please try again later');
+      return false;
+    }
+  },
 };
