@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './src/screens/Auth/LoginScreen';
 import SignUpScreen from './src/screens/Auth/SignUpScreen';
@@ -10,6 +11,7 @@ import SeatBookingScreen from './src/screens/Booking/SeatBookingScreen';
 import PaymentScreen from './src/screens/Payment/PaymentScreen';
 import UserProfileScreen from './src/screens/User/UserProfileScreen';
 import MyBookingsScreen from './src/screens/User/MyBookingsScreen';
+import LoadingIndicator from './src/components/LoadingIndicator';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { Provider } from 'react-redux';
@@ -17,6 +19,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { seedDatabaseIfEmpty } from './src/database/seeder';
 import { initDb } from './src/database/db';
 import { AuthProvider, useAuth } from './src/contexts/AuthContext';
+import { Colors } from './src/theme/Color';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,12 +35,12 @@ const RootStack = ({ initialRoute }) => {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, animation: 'fade' }}
       />
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, animation: 'fade' }}
       />
       <Stack.Screen
         name="Home"
@@ -48,19 +51,23 @@ const RootStack = ({ initialRoute }) => {
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetailScreen}
-        options={{ title: 'Movie Details' }}
+        options={{ title: 'Movie Details', animation: 'slide_from_bottom' }}
       />
       <Stack.Screen
         name="SeatBooking"
         component={SeatBookingScreen}
-        options={{ title: 'Select Seats' }}
+        options={{ title: 'Select Seats', animation: 'fade' }}
       />
-      <Stack.Screen name="Payment" component={PaymentScreen} />
+      <Stack.Screen
+        name="Payment"
+        component={PaymentScreen}
+        options={{ animation: 'fade' }}
+      />
 
       <Stack.Screen
         name="Booking"
         component={BookingScreen}
-        options={{ title: 'Book a slot' }}
+        options={{ title: 'Book a slot', animation: 'fade' }}
       />
       <Stack.Screen
         name="UserProfile"
@@ -89,7 +96,9 @@ const AppContent = () => {
     };
     setup();
   }, []);
-  if (!dbReady) return null;
+  if (!dbReady) {
+    return <LoadingIndicator />;
+  }
   return (
     // <Provider store={store}>
     <NavigationContainer>
