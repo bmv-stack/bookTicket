@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../components/formInput';
@@ -117,7 +116,7 @@ const PaymentScreen = ({ route, navigation }) => {
           </View>
           <View style={styles.rowContainer}>
             <Text style={styles.priceLabel}>GST (18%):</Text>
-            <Text style={styles.priceText}>₹{gst}</Text>
+            <Text style={styles.priceText}>₹{gst.toFixed(1)}</Text>
           </View>
           <View style={styles.rowContainer}>
             <Text style={styles.priceLabel}>Convenience Fees:</Text>

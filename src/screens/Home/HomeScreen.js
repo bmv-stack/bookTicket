@@ -1,11 +1,13 @@
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import AppBar from '../../components/AppBar';
 import MovieCard from '../../components/MovieCard';
 import { movieService } from '../../database/movieService';
 import { styles } from './HomeScreen.styles';
+import { useAuth } from '../../contexts/AuthContext';
 
 const HomeScreen = ({ route }) => {
+  const { user } = useAuth();
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovies = async () => {
@@ -14,37 +16,56 @@ const HomeScreen = ({ route }) => {
     };
     fetchMovies();
   }, []);
-  const userName = route.params?.username;
-  console.log('Username: ', userName);
   return (
     <AppBar>
-      <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.greetingsContainer}>
           <Text style={styles.greetingText}>Greetings,</Text>
           <Text style={[styles.greetingText, { fontWeight: 'bold' }]}>
             {' '}
-            {userName}
+            {user?.name}
           </Text>
         </View>
         <View style={styles.recommendedContainer}>
           <Text style={styles.recommendedText}>Recommended Movies</Text>
         </View>
-        <View>
-          <View style={{ padding: 10 }}>
-            <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={movies}
-              keyExtractor={item => String(item.id)}
-              ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
-              renderItem={({ item }) => <MovieCard movie={item} />}
-            />
-          </View>
+        <View style={styles.list}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={movies}
+            keyExtractor={item => String(item.id)}
+            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+            renderItem={({ item }) => <MovieCard movie={item} />}
+          />
         </View>
         <View style={styles.recommendedContainer}>
-          <Text style={styles.recommendedText}>Top Movies</Text>
+          <Text style={styles.recommendedText}>All Time Favourites</Text>
         </View>
-      </View>
+        <View style={styles.list}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={movies}
+            keyExtractor={item => String(item.id)}
+            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+            renderItem={({ item }) => <MovieCard movie={item} />}
+          />
+        </View>
+        <View style={styles.recommendedContainer}>
+          <Text style={styles.recommendedText}>Trending Movies</Text>
+        </View>
+        <View style={styles.list}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={movies}
+            keyExtractor={item => String(item.id)}
+            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+            renderItem={({ item }) => <MovieCard movie={item} />}
+          />
+        </View>
+      </ScrollView>
     </AppBar>
   );
 };

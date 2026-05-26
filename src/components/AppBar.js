@@ -15,24 +15,22 @@ const AppBar = ({ title = 'TicketBook', children }) => {
     navigation.navigate('UserProfile');
   };
   return (
-    <View style={styles.root}>
-      <SafeAreaView>
-        <View style={styles.container}>
-          <View style={styles.align}>
-            <Text style={styles.appTitle}>{title}</Text>
-          </View>
-          <View style={styles.alignRight}>
-            <TouchableOpacity onPress={handleSearch}>
-              <Icon name="search" size={22} color={Colors.black} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleProfile}>
-              <Icon name="person-sharp" size={22} color={Colors.black} />
-            </TouchableOpacity>
-          </View>
+    <SafeAreaView edges={['top', 'left', 'right']} style={styles.root}>
+      <View style={styles.container}>
+        <View style={styles.align}>
+          <Text style={styles.appTitle}>{title}</Text>
         </View>
-      </SafeAreaView>
-      {children}
-    </View>
+        <View style={styles.alignRight}>
+          <TouchableOpacity onPress={handleSearch}>
+            <Icon name="search" size={22} color={Colors.black} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleProfile}>
+            <Icon name="person-sharp" size={22} color={Colors.black} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{ flex: 1 }}>{children}</View>
+    </SafeAreaView>
   );
 };
 
@@ -47,8 +45,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    height: 60,
-    padding: 10,
+    height: 80,
+    padding: 8,
   },
   appTitle: {
     fontSize: 24,
