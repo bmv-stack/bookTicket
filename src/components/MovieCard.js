@@ -7,48 +7,42 @@ import { Colors } from '../theme/Color';
 const MovieCard = ({ movie }) => {
   const navigation = useNavigation();
 
-  if (!movie) {
-    return null;
-  }
+  if (!movie) return null;
 
   const handlePress = () => {
     navigation.navigate('MovieDetail', { movie });
   };
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
-        <View style={styles.cardContainer}>
-          <Image
-            source={{
-              uri: movie.image,
-            }}
-            style={styles.image}
-            resizeMode="cover"
-          />
-          <View style={styles.movieInfo}>
-            <View style={styles.infoItem}>
-              <Icon
-                name="time"
-                size={16}
-                color={Colors.black}
-                style={styles.infoItem}
-              />
-              <Text style={styles.infoText}>{movie.duration}</Text>
-            </View>
-            <View style={styles.divider} />
-            <View style={styles.infoItem}>
-              <Icon name="star" size={16} color={Colors.movieRating} />
-              <Text style={styles.infoText}>
-                {Number(movie.rating.toFixed(1))}
-              </Text>
-            </View>
-          </View>
-          <Text style={styles.movieText} numberOfLines={1}>
-            {movie.name}
+    <TouchableOpacity
+      activeOpacity={0.85}
+      onPress={handlePress}
+      style={styles.container}
+    >
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: movie.image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+        <View style={styles.ratingBadge}>
+          <Icon name="star" size={10} color={Colors.movieRating} />
+          <Text style={styles.ratingText}>
+            {Number(movie.rating).toFixed(1)}
           </Text>
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+
+      <View style={styles.infoContainer}>
+        <Text style={styles.movieTitle} numberOfLines={1}>
+          {movie.name}
+        </Text>
+        <View style={styles.durationRow}>
+          <Icon name="time-outline" size={11} color={Colors.subtitle} />
+          <Text style={styles.durationText}>{movie.duration}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -56,47 +50,57 @@ export default MovieCard;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  cardContainer: {
+    width: 130,
+    borderRadius: 14,
     backgroundColor: Colors.white,
-    height: 280,
-    width: 120,
-    borderRadius: 10,
     overflow: 'hidden',
+    shadowColor: Colors.shadowColor,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 3,
+  },
+  imageContainer: {
+    position: 'relative',
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 190,
   },
-  movieInfo: {
+  ratingBadge: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: Colors.white,
-    paddingVertical: 8,
-    paddingHorizontal: 4,
+    gap: 3,
+    backgroundColor: Colors.black,
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    borderRadius: 20,
   },
-  infoItem: {
-    flex: 1,
+  ratingText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: Colors.white,
+  },
+  infoContainer: {
+    padding: 10,
+    gap: 4,
+  },
+  movieTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#111',
+  },
+  durationRow: {
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: 4,
   },
-  infoLabel: {
-    fontSize: 14,
-    marginBottom: 2,
-  },
-  infoText: {
+  durationText: {
     fontSize: 11,
-    fontWeight: '600',
-    color: Colors.infoText,
-  },
-  divider: {
-    width: 1,
-    height: 20,
-    backgroundColor: Colors.white,
-  },
-
-  movieText: {
-    padding: 9,
+    color: Colors.subtitle,
+    fontWeight: '500',
   },
 });

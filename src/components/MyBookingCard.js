@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import { formatDate } from '../utils/formatDate';
-//import { useDispatch } from 'react-redux';
-import { cancelBooking } from '../redux/slices/bookingSlice';
 import { movieService } from '../database/movieService';
 import { Colors } from '../theme/Color';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const MyBookingCard = ({ item, onCancelled }) => {
   const handleCancel = (id, movieName) => {
@@ -21,31 +20,69 @@ const MyBookingCard = ({ item, onCancelled }) => {
             if (result) {
               onCancelled();
             } else {
-              Alert.alert('Unable to cancel the booking');
+              Alert.alert('Error', 'Unable to cancel the booking');
             }
           },
         },
       ],
     );
   };
+
   return (
-    <View style={styles.ticketCard}>
-      <Text style={styles.movieTitle}>{item.movie_name}</Text>
-      <Text style={styles.detailsText}>Location: {item.theatre_name}</Text>
-      <Text style={styles.detailsText}>
-        Booked Seats: {item.selected_seats}
-      </Text>
-      <Text style={styles.detailsText}>
-        Date: {formatDate(item.booking_date)}
-      </Text>
-      <Text style={styles.detailsText}>Slot: {item.slot_time}</Text>
-      <Text style={styles.priceText}>Paid: ₹{item.payable_amount}</Text>
+    <View style={styles.card}>
+      <View style={styles.header}>
+        <Text style={styles.movieTitle} numberOfLines={1}>
+          {item.movie_name}
+        </Text>
+        <View style={styles.priceBadge}>
+          <Text style={styles.priceText}>₹{item.payable_amount}</Text>
+        </View>
+      </View>
+
+      <View style={styles.divider} />
+
+      <View style={styles.detailsGrid}>
+        <View style={styles.detailItem}>
+          <Icon name="location-outline" size={14} color={Colors.subtitle} />
+          <Text style={styles.detailLabel}>Theatre</Text>
+          <Text style={styles.detailValue} numberOfLines={1}>
+            {item.theatre_name}
+          </Text>
+        </View>
+
+        <View style={styles.detailItem}>
+          <Icon name="calendar-outline" size={14} color={Colors.subtitle} />
+          <Text style={styles.detailLabel}>Date</Text>
+          <Text style={styles.detailValue}>
+            {formatDate(item.booking_date)}
+          </Text>
+        </View>
+
+        <View style={styles.detailItem}>
+          <Icon name="time-outline" size={14} color={Colors.subtitle} />
+          <Text style={styles.detailLabel}>Slot</Text>
+          <Text style={styles.detailValue}>{item.slot_time}</Text>
+        </View>
+
+        <View style={styles.detailItem}>
+          <Icon name="ticket-outline" size={14} color={Colors.subtitle} />
+          <Text style={styles.detailLabel}>Seats</Text>
+          <Text style={styles.detailValue} numberOfLines={1}>
+            {item.selected_seats}
+          </Text>
+        </View>
+      </View>
 
       <TouchableOpacity
         style={styles.cancelButton}
-        activeOpacity={0.5}
+        activeOpacity={0.7}
         onPress={() => handleCancel(item.id, item.movie_name)}
       >
+        <Icon
+          name="close-circle-outline"
+          size={15}
+          color={Colors.cancelButton}
+        />
         <Text style={styles.cancelButtonText}>Cancel Booking</Text>
       </TouchableOpacity>
     </View>
@@ -55,36 +92,83 @@ const MyBookingCard = ({ item, onCancelled }) => {
 export default MyBookingCard;
 
 const styles = StyleSheet.create({
-  ticketCard: {
+  card: {
     backgroundColor: Colors.white,
+    borderRadius: 16,
     padding: 16,
-    borderRadius: 8,
-    elevation: 2,
+    marginBottom: 12,
+    shadowColor: Colors.shadowColor,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   movieTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 4,
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#111',
+    flex: 1,
+    marginRight: 10,
   },
-  detailsText: { fontSize: 14, color: Colors.label, marginBottom: 2 },
+  priceBadge: {
+    backgroundColor: '#e8f5e9',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 20,
+  },
   priceText: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 13,
+    fontWeight: '700',
     color: Colors.priceText,
-    marginTop: 4,
+  },
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: Colors.white,
+    marginBottom: 12,
+  },
+  detailsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    marginBottom: 16,
+  },
+  detailItem: {
+    width: '45%',
+    gap: 2,
+  },
+  detailLabel: {
+    fontSize: 10,
+    color: Colors.subtitle,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginTop: 2,
+  },
+  detailValue: {
+    fontSize: 13,
+    color: '#222',
+    fontWeight: '500',
   },
   cancelButton: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    height: '20%',
-    width: '40%',
-    backgroundColor: Colors.cancelButton,
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 10,
+    borderWidth: 1,
+    borderColor: Colors.cancelButtonBorder,
+    backgroundColor: '#fff5f5',
   },
   cancelButtonText: {
-    fontWeight: '500',
+    fontSize: 13,
+    fontWeight: '600',
     color: Colors.cancelButtonText,
   },
 });
