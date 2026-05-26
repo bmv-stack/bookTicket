@@ -44,9 +44,13 @@ const BookingCard = ({
             )}
           />
         ) : (
-          <Text style={styles.noShowsText}>
-            No shows available for this date
-          </Text>
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyIcon}>🎬</Text>
+            <Text style={styles.noShowsText}>No shows available</Text>
+            <Text style={styles.noShowsSubText}>
+              Try selecting a different date
+            </Text>
+          </View>
         )}
       </View>
     </View>
@@ -106,5 +110,18 @@ const styles = StyleSheet.create({
     color: Colors.noShowText,
     fontSize: 12,
     paddingVertical: 16,
+  },
+  noShowsSubText: {
+    fontSize: 12,
+    color: '#aaa',
+  },
+  emptyIcon: {
+    fontSize: 28,
+    marginBottom: 6,
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    paddingVertical: 24,
+    gap: 4,
   },
 });

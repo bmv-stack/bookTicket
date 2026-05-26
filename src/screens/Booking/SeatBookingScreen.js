@@ -23,7 +23,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
         if (takenSeats.includes(seat.id)) {
           return {
             ...seat,
-            status: takenSeats.includes(seat.id) ? 'reserved' : seat.status,
+            status: 'reserved',
           };
         }
         return seat;

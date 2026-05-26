@@ -1,9 +1,10 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import React, { useEffect, useMemo, useState } from 'react';
 import { dateListGenerator } from '../../utils/dateListGeneration';
 import DateList from '../../components/DateList';
 import { movieService } from '../../database/movieService';
 import BookingCard from '../../components/BookingCard';
+import EmptyComponent from '../../components/EmptyComponent';
 import { styles } from './BookinScreen.styles';
 
 const BookingScreen = ({ route, navigation }) => {
@@ -22,7 +23,6 @@ const BookingScreen = ({ route, navigation }) => {
           id: slot.theatreId,
           name: slot.theatreName,
           brand: slot.theatreBrand,
-          city: slot.theatreCity,
           slots: [],
         };
       }
@@ -41,7 +41,7 @@ const BookingScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     const fetchMovieTime = async () => {
-      if (!movie?.id) return;
+      if (!movie.id) return;
 
       const flatSlots = await movieService.getSlotsForMovieAndDate(
         movie.id,
@@ -51,7 +51,7 @@ const BookingScreen = ({ route, navigation }) => {
       setSlotTheatres(groupedData);
     };
     fetchMovieTime();
-  }, [movie?.id, selectedDate]);
+  }, [movie.id, selectedDate]);
 
   return (
     <View style={styles.container}>
@@ -74,6 +74,7 @@ const BookingScreen = ({ route, navigation }) => {
         showsVerticalScrollIndicator={false}
         data={slotTheatres}
         keyExtractor={item => item.id}
+        contentContainerStyle={slotTheatres.length === 0 && { flexGrow: 1 }}
         renderItem={({ item }) => (
           <BookingCard
             movie={movie}
@@ -84,6 +85,7 @@ const BookingScreen = ({ route, navigation }) => {
             navigation={navigation}
           />
         )}
+        ListEmptyComponent={<EmptyComponent />}
       />
     </View>
   );
