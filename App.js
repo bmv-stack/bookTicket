@@ -16,18 +16,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { store } from './src/redux/store';
 import { seedDatabaseIfEmpty } from './src/database/seeder';
 import { initDb } from './src/database/db';
-import { AuthProvider } from './src/contexts/AuthContext';
+import { AuthProvider, useAuth } from './src/contexts/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
-const RootStack = () => {
+const RootStack = ({ initialRoute }) => {
   return (
     <Stack.Navigator
       screenOptions={{
         //headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
       }}
-      initialRouteName="Home"
+      initialRouteName={initialRoute}
     >
       <Stack.Screen
         name="Login"
@@ -75,12 +75,16 @@ const RootStack = () => {
     </Stack.Navigator>
   );
 };
-function App() {
+const AppContent = () => {
   const [dbReady, setDbReady] = useState(false);
+  const [initialRoute, setInitialRoute] = useState(null);
+  const { autoLogin } = useAuth();
   useEffect(() => {
     const setup = async () => {
       await initDb();
       await seedDatabaseIfEmpty();
+      const isLoggedIn = await autoLogin();
+      setInitialRoute(isLoggedIn ? 'Home' : 'Login');
       setDbReady(true);
     };
     setup();
@@ -88,14 +92,19 @@ function App() {
   if (!dbReady) return null;
   return (
     // <Provider store={store}>
-    <AuthProvider>
-      <NavigationContainer>
-        <SafeAreaProvider>
-          <RootStack />
-        </SafeAreaProvider>
-      </NavigationContainer>
-    </AuthProvider>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <RootStack initialRoute={initialRoute} />
+      </SafeAreaProvider>
+    </NavigationContainer>
     // </Provider>
+  );
+};
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
