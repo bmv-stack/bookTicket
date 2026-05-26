@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { seatGenerator } from '../../utils/seatGenerator';
 import { movieService } from '../../database/movieService';
 import { styles } from './SeatBookingScreen.styles';
+import { useTranslation } from 'react-i18next';
 
 const SeatBookingScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const { movie, theatre, slot } = route.params;
   const date = route.params?.date;
   console.log('Date on Payment Screen: ', date);
@@ -142,7 +144,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
           disabled={!isSeatSelected}
         >
           <Text style={styles.bookButtonText}>
-            Proceed to Payment {''} (₹{totalPrice})
+            {t('common.seatPayment')} {''} (₹{totalPrice})
           </Text>
         </TouchableOpacity>
       </View>

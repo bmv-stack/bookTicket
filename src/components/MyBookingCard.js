@@ -4,8 +4,10 @@ import { formatDate } from '../utils/formatDate';
 import { movieService } from '../database/movieService';
 import { Colors } from '../theme/Color';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useTranslation } from 'react-i18next';
 
 const MyBookingCard = ({ item, onCancelled }) => {
+  const { t } = useTranslation();
   const handleCancel = (id, movieName) => {
     Alert.alert(
       `Cancel booking for ${movieName}?`,
@@ -83,7 +85,7 @@ const MyBookingCard = ({ item, onCancelled }) => {
           size={15}
           color={Colors.cancelButton}
         />
-        <Text style={styles.cancelButtonText}>Cancel Booking</Text>
+        <Text style={styles.cancelButtonText}>{t('common.cancelBooking')}</Text>
       </TouchableOpacity>
     </View>
   );

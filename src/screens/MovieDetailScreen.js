@@ -1,8 +1,10 @@
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from './MovieDetailScreen.styles';
+import { useTranslation } from 'react-i18next';
 
 const MovieDetailScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const { movie } = route.params;
   const handleBooking = () => {
     navigation.navigate('Booking', { movie: movie });
@@ -32,7 +34,7 @@ const MovieDetailScreen = ({ route, navigation }) => {
         <Text style={styles.description}>{movie.description}</Text>
       </View>
       <TouchableOpacity style={styles.bookButton} onPress={handleBooking}>
-        <Text style={styles.bookButtonText}>Book Now</Text>
+        <Text style={styles.bookButtonText}>{t('common.detailsBook')}</Text>
       </TouchableOpacity>
     </ScrollView>
   );

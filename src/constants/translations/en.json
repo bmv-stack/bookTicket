@@ -1,0 +1,14 @@
+{
+    "common":{
+        "greet": "Greetings",
+        "recommended": "Recommended Movies",
+        "allTime": "All Time Favourites",
+        "trending": "Trending Right Now",
+        "detailsBook": "Book Now",
+        "seatPayment": "Proceed To Payment",
+        "payment": "Pay Now",
+        "paymentModal": "Payment Successful",
+        "donePayment": "Done",
+        "cancelBooking": "Cancel Booking"
+    }
+}

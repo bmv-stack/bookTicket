@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { Colors } from '../../src/theme/Color';
+import { toggleLng } from '../utils/toggleLng';
 
 const AppBar = ({ title = 'TicketBook', children }) => {
   const navigation = useNavigation();
@@ -23,6 +24,9 @@ const AppBar = ({ title = 'TicketBook', children }) => {
         <View style={styles.alignRight}>
           <TouchableOpacity onPress={handleSearch}>
             <Icon name="search" size={22} color={Colors.black} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={toggleLng}>
+            <Icon name="language" size={22} color={Colors.black} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleProfile}>
             <Icon name="person-sharp" size={22} color={Colors.black} />

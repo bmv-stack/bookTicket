@@ -1,0 +1,14 @@
+{
+    "common": {
+        "greet": "નમસ્કાર",
+        "recommended": "ભલામણ કરેલ મૂવીઝ",
+        "allTime": "સર્વકાલીન મનપસંદ",
+        "trending": "અત્યારે ટ્રેન્ડિંગ",
+        "detailsBook": "હમણાં બુક કરો",
+        "seatPayment": "ચુકવણી માટે આગળ વધો",
+        "payment": "ચુકવણી કરો",
+        "paymentModal": "ચુકવણી સફળ રહી",
+        "donePayment": "થઈ ગયું",
+        "cancelBooking": "બુકિંગ રદ કરો"
+    }
+}

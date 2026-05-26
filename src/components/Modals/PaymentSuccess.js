@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Colors } from '../../theme/Color';
+import { useTranslation } from 'react-i18next';
 
 const PaymentSuccessModal = ({ visible, message, onClose }) => {
+  const { t } = useTranslation();
   return (
     <Modal transparent visible={visible} animationType="fade">
       <TouchableOpacity style={styles.modalOverlay}>
@@ -10,7 +12,7 @@ const PaymentSuccessModal = ({ visible, message, onClose }) => {
           <View style={styles.iconCircle}>
             <Text style={styles.iconText}>✓</Text>
           </View>
-          <Text style={styles.title}>Payment Successful</Text>
+          <Text style={styles.title}>{t('common.paymentModal')}</Text>
 
           <Text style={styles.message}>{message}</Text>
 
@@ -21,7 +23,9 @@ const PaymentSuccessModal = ({ visible, message, onClose }) => {
             onPress={onClose}
             activeOpacity={0.8}
           >
-            <Text style={styles.closeButtonText}>Done</Text>
+            <Text style={styles.closeButtonText}>
+              {t('common.donePayment')}
+            </Text>
           </TouchableOpacity>
         </TouchableOpacity>
       </TouchableOpacity>

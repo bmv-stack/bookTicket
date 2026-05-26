@@ -16,8 +16,10 @@ import { formatDate } from '../utils/formatDate';
 import { movieService } from '../database/movieService';
 import { useAuth } from '../contexts/AuthContext';
 import { Colors } from '../theme/Color';
+import { useTranslation } from 'react-i18next';
 
 const PaymentScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     cardNumber: '',
     cvv: '',
@@ -162,7 +164,7 @@ const PaymentScreen = ({ route, navigation }) => {
             secureTextEntry
           />
           <TouchableOpacity style={styles.payButton} onPress={handlePayment}>
-            <Text style={styles.payButtonText}>Pay Now</Text>
+            <Text style={styles.payButtonText}>{t('common.payment')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
