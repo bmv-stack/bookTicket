@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
 import { styles } from './SignUpScreen.styles';
 import { movieService } from '../../database/movieService';
+import { Colors } from '../../theme/Color';
 
 const SignUpScreen = ({ navigation }) => {
   const [form, setForm] = useState({
@@ -115,7 +116,10 @@ const SignUpScreen = ({ navigation }) => {
             <Text
               style={[
                 styles.navigationText,
-                { color: '#007AFF', textDecorationLine: 'underline' },
+                {
+                  color: Colors.navigationLink,
+                  textDecorationLine: 'underline',
+                },
               ]}
             >
               {' '}

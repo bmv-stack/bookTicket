@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '../theme/Color';
 
 const MovieCard = ({ movie }) => {
   const navigation = useNavigation();
@@ -29,14 +30,14 @@ const MovieCard = ({ movie }) => {
               <Icon
                 name="time"
                 size={16}
-                color="#000"
+                color={Colors.black}
                 style={styles.infoItem}
               />
               <Text style={styles.infoText}>{movie.duration}</Text>
             </View>
             <View style={styles.divider} />
             <View style={styles.infoItem}>
-              <Icon name="star" size={16} color="#e1da11" />
+              <Icon name="star" size={16} color={Colors.movieRating} />
               <Text style={styles.infoText}>
                 {Number(movie.rating.toFixed(1))}
               </Text>
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     height: 280,
     width: 120,
     borderRadius: 10,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: Colors.white,
     paddingVertical: 8,
     paddingHorizontal: 4,
   },
@@ -87,12 +88,12 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.infoText,
   },
   divider: {
     width: 1,
     height: 20,
-    backgroundColor: '#ddd',
+    backgroundColor: Colors.white,
   },
 
   movieText: {

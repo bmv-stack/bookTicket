@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../theme/Color';
 
 export const styles = StyleSheet.create({
   root: {
@@ -10,7 +11,7 @@ export const styles = StyleSheet.create({
     height: 'auto',
     width: '100%',
     backgroundColor: '#2c2c2c',
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 },
     elevation: 3,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
   movieText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.white,
     marginBottom: 10,
   },
   movieDetailsRow: {
@@ -42,8 +43,8 @@ export const styles = StyleSheet.create({
     margin: 6,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#007AFF',
-    backgroundColor: '#ffffff',
+    borderColor: Colors.seatBase,
+    backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -52,12 +53,12 @@ export const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   seatReserved: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: Colors.white,
     borderColor: '#bdbdbd',
   },
   seatSelected: {
-    backgroundColor: '#4CD964',
-    borderColor: '#4CD964',
+    backgroundColor: Colors.selectedSeat,
+    borderColor: Colors.selectedSeat,
   },
   seatContainer: {
     marginTop: '10%',
@@ -72,12 +73,12 @@ export const styles = StyleSheet.create({
   screen: {
     width: '70%',
     height: 6,
-    backgroundColor: '#d3d3d3',
+    backgroundColor: Colors.screenLine,
     borderRadius: 20,
   },
   screenText: {
     fontSize: 10,
-    color: '#888',
+    color: Colors.screenText,
     marginTop: 6,
     letterSpacing: 2,
   },
@@ -97,18 +98,18 @@ export const styles = StyleSheet.create({
     color: '#222',
   },
   bookButton: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: Colors.bookButton,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
   },
   bookButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
   bookButtonDisbaled: {
-    backgroundColor: '#8f8a8a',
+    backgroundColor: Colors.disabled,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',

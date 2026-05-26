@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import React from 'react';
+import { Colors } from '../theme/Color';
 
 const FormInput = ({ label, value, onChangeText, placeholder, ...props }) => {
   return (
@@ -29,18 +30,18 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     fontSize: 16,
-    color: '#000',
+    color: Colors.black,
     paddingVertical: 14,
     paddingHorizontal: 15,
     borderWidth: 1.5,
-    borderColor: '#d0d0d0',
+    borderColor: Colors.borderColor,
     borderRadius: 8,
     marginTop: 10,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: Colors.white,
   },
   label: {
     fontSize: 15,
-    color: '#555',
+    color: Colors.label,
     marginBottom: 8,
     fontWeight: '600',
     marginTop: 8,
@@ -48,11 +49,5 @@ const styles = StyleSheet.create({
   labelContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  optionalLabelText: {
-    fontSize: 12,
-    color: '#9f9999',
-    fontWeight: '300',
-    marginLeft: 4,
   },
 });

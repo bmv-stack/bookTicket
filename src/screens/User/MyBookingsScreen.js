@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import MyBookingCard from '../../components/MyBookingCard';
 import { movieService } from '../../database/movieService';
 import { useAuth } from '../../contexts/AuthContext';
+import { Colors } from '../../theme/Color';
 
 const MyBookingsScreen = ({ navigation }) => {
   //const myBookings = useSelector(state => state.booking.myBookings);
@@ -48,7 +49,7 @@ export default MyBookingsScreen;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f5f5f5', padding: 16 },
   ticketCard: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     padding: 16,
     borderRadius: 8,
     marginBottom: 12,
@@ -57,14 +58,14 @@ const styles = StyleSheet.create({
   movieTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.infoText,
     marginBottom: 4,
   },
-  detailsText: { fontSize: 14, color: '#666', marginBottom: 2 },
+  detailsText: { fontSize: 14, color: Colors.label, marginBottom: 2 },
   priceText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#4CD964',
+    color: Colors.priceText,
     marginTop: 4,
   },
   emptyList: {
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#999',
+    color: Colors.subtitle,
     marginTop: 40,
   },
 });

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,9 +14,9 @@ export const styles = StyleSheet.create({
   invoiceContainer: {
     height: 250,
     width: '85%',
-    backgroundColor: '#807676',
+    backgroundColor: Colors.invoiceContainer,
     borderRadius: 5,
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOffset: { width: 1, height: 0 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
     height: 1,
     width: '100%',
     borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: Colors.white,
   },
   finalAmountContainer: {
     padding: 9,
@@ -63,27 +64,27 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   payButton: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: Colors.payButton,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 20,
   },
   payButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
   bookingSummaryContainer: {
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     padding: 16,
     borderRadius: 12,
     marginHorizontal: 16,
     marginTop: 15,
     marginBottom: 10,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -91,7 +92,7 @@ export const styles = StyleSheet.create({
   summaryTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#222',
+    color: Colors.infoText,
     marginBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
@@ -105,18 +106,18 @@ export const styles = StyleSheet.create({
   },
   summaryLabel: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.label,
     fontWeight: '500',
   },
   summaryValue: {
     fontSize: 14,
-    color: '#333',
+    color: Colors.infoText,
     fontWeight: '600',
     textAlign: 'right',
     flex: 1,
     marginLeft: 16,
   },
   seatsText: {
-    color: '#FF3B30',
+    color: Colors.seatsText,
   },
 });

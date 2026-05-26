@@ -16,6 +16,7 @@ import { styles } from './PaymentScreen.styles';
 import { formatDate } from '../utils/formatDate';
 import { movieService } from '../database/movieService';
 import { useAuth } from '../contexts/AuthContext';
+import { Colors } from '../theme/Color';
 
 const PaymentScreen = ({ route, navigation }) => {
   const [form, setForm] = useState({
@@ -102,7 +103,7 @@ const PaymentScreen = ({ route, navigation }) => {
 
           <View style={styles.summaryRow}>
             <Text style={styles.summaryLabel}>Seats: </Text>
-            <Text style={[styles.summaryValue, { color: '#FF3B30' }]}>
+            <Text style={[styles.summaryValue, { color: Colors.seatsText }]}>
               {Array.isArray(selectedSeats)
                 ? selectedSeats.join(',')
                 : selectedSeats}

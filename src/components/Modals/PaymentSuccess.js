@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { Colors } from '../../theme/Color';
 
 const PaymentSuccessModal = ({ visible, message, onClose }) => {
   return (
@@ -33,18 +34,18 @@ export default PaymentSuccessModal;
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)',
+    backgroundColor: Colors.black,
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.white,
     paddingVertical: 36,
     paddingHorizontal: 28,
     borderRadius: 24,
     alignItems: 'center',
     width: '82%',
-    shadowColor: '#000',
+    shadowColor: Colors.black,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.12,
     shadowRadius: 24,
@@ -54,25 +55,25 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: '#e6f9f0',
+    backgroundColor: Colors.moadlIconCircle,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
   },
   iconText: {
     fontSize: 32,
-    color: '#22c97a',
+    color: Colors.moadlIconText,
   },
   title: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#111',
+    color: Colors.black,
     marginBottom: 8,
     textAlign: 'center',
   },
   message: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.label,
     textAlign: 'center',
     lineHeight: 22,
     marginBottom: 24,
@@ -81,18 +82,18 @@ const styles = StyleSheet.create({
   divider: {
     width: '100%',
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#e5e5e5',
+    backgroundColor: Colors.divider,
     marginBottom: 20,
   },
   closeButton: {
-    backgroundColor: '#22c97a',
+    backgroundColor: Colors.modalCloseButton,
     paddingVertical: 14,
     borderRadius: 14,
     width: '100%',
     alignItems: 'center',
   },
   closeButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 0.3,

@@ -4,6 +4,7 @@ import FormInput from '../../components/formInput';
 import { styles } from './LoginScreen.styles';
 import { movieService } from '../../database/movieService';
 import { useAuth } from '../../contexts/AuthContext';
+import { Colors } from '../../theme/Color';
 
 const LoginScreen = ({ navigation }) => {
   const { login } = useAuth();
@@ -66,7 +67,10 @@ const LoginScreen = ({ navigation }) => {
             <Text
               style={[
                 styles.navigationText,
-                { color: '#007AFF', textDecorationLine: 'underline' },
+                {
+                  color: Colors.navigationLink,
+                  textDecorationLine: 'underline',
+                },
               ]}
             >
               {' '}

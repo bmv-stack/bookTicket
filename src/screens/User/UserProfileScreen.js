@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { menuItems } from '../../data/USER_OPTIONS_DATA';
 import UserOptions from '../../components/UserOptions';
 import { useAuth } from '../../contexts/AuthContext';
+import { Colors } from '../../theme/Color';
 
 const UserProfileScreen = ({ navigation }) => {
   const { logout } = useAuth();
@@ -73,14 +74,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   headerSection: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     paddingVertical: 24,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: Colors.black,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -103,26 +104,26 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.infoText,
     marginBottom: 4,
   },
   userEmail: {
     fontSize: 12,
-    color: '#666',
+    color: Colors.label,
     marginBottom: 4,
   },
   userPhone: {
     fontSize: 12,
-    color: '#666',
+    color: Colors.label,
   },
   menuContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     marginHorizontal: 16,
     marginBottom: 20,
     borderRadius: 8,
     overflow: 'hidden',
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: Colors.black,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -130,18 +131,18 @@ const styles = StyleSheet.create({
   logoutButton: {
     marginHorizontal: 16,
     marginBottom: 32,
-    backgroundColor: '#FF3B30',
+    backgroundColor: Colors.logoutButton,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
   },
   logoutButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 16,
     fontWeight: '600',
   },

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,9 +10,9 @@ export const styles = StyleSheet.create({
   },
   formContainer: {
     width: '85%',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     borderRadius: 20,
-    shadowColor: '#ca2020',
+    shadowColor: Colors.accent,
     shadowOffset: { width: 0, height: 1 },
     shadowRadius: 15,
     shadowOpacity: 0.12,
@@ -23,25 +24,25 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 35,
-    color: '#333',
+    color: Colors.infoText,
   },
   fieldsContainer: {
     marginBottom: 5,
   },
   submitButton: {
-    backgroundColor: '#eb4e63',
+    backgroundColor: Colors.accent,
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 1,
-    shadowColor: '#eb4e63',
+    shadowColor: Colors.accent,
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 8,
     shadowOpacity: 0.3,
   },
   submitButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 18,
     fontWeight: '700',
   },
@@ -52,6 +53,6 @@ export const styles = StyleSheet.create({
   },
   navigationText: {
     textAlign: 'center',
-    color: '#000',
+    color: Colors.black,
   },
 });

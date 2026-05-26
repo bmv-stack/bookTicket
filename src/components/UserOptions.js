@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { Colors } from '../theme/Color';
 
 const UserOptions = ({ item, onPress }) => {
   return (
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: Colors.borderColor,
   },
   menuIcon: {
     fontSize: 24,
@@ -38,15 +39,15 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.infoText,
     marginBottom: 2,
   },
   menuSubtitle: {
     fontSize: 12,
-    color: '#999',
+    color: Colors.subtitle,
   },
   menuArrow: {
     fontSize: 20,
-    color: '#ccc',
+    color: Colors.white,
   },
 });

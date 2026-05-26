@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React from 'react';
 import SlotCard from './SlotCard';
+import { Colors } from '../theme/Color';
 
 const BookingCard = ({
   slots,
@@ -56,14 +57,14 @@ export default BookingCard;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     borderRadius: 8,
     marginHorizontal: 12,
     marginVertical: 10,
     paddingVertical: 12,
     paddingHorizontal: 12,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -79,17 +80,17 @@ const styles = StyleSheet.create({
   },
   theatreLabel: {
     fontSize: 12,
-    color: '#666',
+    color: Colors.label,
     marginBottom: 4,
   },
   theatreName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.theatreText,
   },
   divider: {
     height: 1,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: Colors.divider,
     marginVertical: 10,
   },
   slotsContainer: {
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   },
   noShowsText: {
     textAlign: 'center',
-    color: '#999',
+    color: Colors.noShowText,
     fontSize: 12,
     paddingVertical: 16,
   },

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,9 +9,8 @@ export const styles = StyleSheet.create({
   dateListContainer: {
     height: 70,
     borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
+    borderColor: Colors.dateListBorder,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5EA',
     marginBottom: 15,
   },
   bookingContainer: {

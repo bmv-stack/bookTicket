@@ -4,6 +4,7 @@ import { formatDate } from '../utils/formatDate';
 //import { useDispatch } from 'react-redux';
 import { cancelBooking } from '../redux/slices/bookingSlice';
 import { movieService } from '../database/movieService';
+import { Colors } from '../theme/Color';
 
 const MyBookingCard = ({ item, onCancelled }) => {
   const handleCancel = (id, movieName) => {
@@ -55,7 +56,7 @@ export default MyBookingCard;
 
 const styles = StyleSheet.create({
   ticketCard: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     padding: 16,
     borderRadius: 8,
     elevation: 2,
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 4,
   },
-  detailsText: { fontSize: 14, color: '#666', marginBottom: 2 },
+  detailsText: { fontSize: 14, color: Colors.label, marginBottom: 2 },
   priceText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#4CD964',
+    color: Colors.priceText,
     marginTop: 4,
   },
   cancelButton: {
@@ -78,12 +79,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '20%',
     width: '40%',
-    backgroundColor: '#a8a0a0',
+    backgroundColor: Colors.cancelButton,
     borderRadius: 10,
     marginTop: 10,
   },
   cancelButtonText: {
     fontWeight: '500',
-    color: 'red',
+    color: Colors.cancelButtonText,
   },
 });

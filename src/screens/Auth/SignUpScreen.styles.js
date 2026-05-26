@@ -1,17 +1,18 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#c9bebe',
+    backgroundColor: Colors.backgroundColor,
   },
   formContainer: {
     width: '85%',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     borderRadius: 20,
-    shadowColor: '#000',
+    shadowColor: Colors.shadowColor,
     shadowOffset: { width: 0, height: 8 },
     shadowRadius: 15,
     shadowOpacity: 0.12,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 35,
-    color: '#333',
+    color: Colors.infoText,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -36,19 +37,19 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   submitButton: {
-    backgroundColor: '#eb4e63',
+    backgroundColor: Colors.accent,
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 15,
-    shadowColor: '#eb4e63',
+    shadowColor: Colors.accent,
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 8,
     shadowOpacity: 0.3,
   },
   submitButtonText: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 18,
     fontWeight: '700',
   },
@@ -59,6 +60,6 @@ export const styles = StyleSheet.create({
   },
   navigationText: {
     textAlign: 'center',
-    color: '#000',
+    color: Colors.black,
   },
 });

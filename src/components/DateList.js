@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { Colors } from '../theme/Color';
 
 const DateList = ({ item, selectedDate, setSelectedDate }) => {
   const isSelected = item.fullDate.trim() === selectedDate.trim();
   const [monthName, dayName] = item.dayName.split(' ');
-  const backgroundColor = isSelected ? '#eb4e63' : '#fff';
-  const textColor = isSelected ? '#fff' : '#232222';
+  const backgroundColor = isSelected ? Colors.accent : Colors.white;
+  const textColor = isSelected ? Colors.white : Colors.dateListText;
   return (
     <TouchableOpacity
       onPress={() => setSelectedDate(item.fullDate)}
@@ -36,11 +37,10 @@ const styles = StyleSheet.create({
   dateNumber: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#000',
+    color: Colors.black,
   },
   dateDay: {
     fontSize: 9,
-    color: '#252581',
     marginTop: 6,
     marginBottom: 4,
     textAlign: 'center',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   dateMonthName: {
     fontSize: 9,
     fontWeight: 'bold',
-    color: '#8E8E93',
+    color: Colors.dateMonth,
     marginTop: 1,
   },
 });

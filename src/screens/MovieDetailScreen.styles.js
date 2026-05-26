@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
   },
   image: {
     width: '100%',
@@ -15,7 +16,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginHorizontal: 16,
     marginTop: 16,
-    color: '#333',
+    color: Colors.infoText,
   },
   infoRow: {
     flexDirection: 'row',
@@ -37,13 +38,13 @@ export const styles = StyleSheet.create({
   },
   infoLabel: {
     fontSize: 12,
-    color: '#999',
+    color: Colors.subtitle,
     marginBottom: 4,
   },
   infoValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.infoText,
   },
   descriptionContainer: {
     marginHorizontal: 16,
@@ -52,19 +53,19 @@ export const styles = StyleSheet.create({
   descriptionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.infoText,
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.label,
     lineHeight: 22,
     textAlign: 'justify',
   },
   bookButton: {
     marginHorizontal: 16,
     marginBottom: 32,
-    backgroundColor: '#e91e63',
+    backgroundColor: Colors.bookButton,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
@@ -72,6 +73,6 @@ export const styles = StyleSheet.create({
   bookButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: Colors.white,
   },
 });

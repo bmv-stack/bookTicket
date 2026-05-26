@@ -11,6 +11,7 @@ import React, { useState, useMemo } from 'react';
 import MovieCard from '../components/MovieCard';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { DUMMY_DATA } from '../data/DUMMY_DATA';
+import { Colors } from '../theme/Color';
 
 const ALL_GENRES = [
   'All',
@@ -120,8 +121,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     paddingHorizontal: 12,
     height: 44,
-    backgroundColor: '#fff',
-    borderColor: '#e0e0e0',
+    backgroundColor: Colors.white,
+    borderColor: Colors.borderColor,
     borderWidth: 1,
     borderRadius: 12,
     gap: 8,
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#111',
+    color: Colors.searchInput,
   },
   clearIcon: {
     fontSize: 12,
@@ -153,27 +154,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: Colors.borderColor,
     justifyContent: 'center',
     alignItems: 'center',
   },
   genrePillActive: {
-    backgroundColor: '#111',
-    borderColor: '#111',
+    backgroundColor: Colors.activeGenrePill,
+    borderColor: Colors.activeGenrePill,
   },
   genrePillText: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#555',
+    color: Colors.label,
   },
   genrePillTextActive: {
-    color: '#fff',
+    color: Colors.white,
   },
   resultsText: {
     fontSize: 12,
-    color: '#aaa',
+    color: Colors.subtitle,
     paddingHorizontal: 16,
     marginBottom: 8,
   },
@@ -192,10 +193,10 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#555',
+    color: Colors.label,
   },
   emptySubText: {
     fontSize: 13,
-    color: '#aaa',
+    color: Colors.subtitle,
   },
 });

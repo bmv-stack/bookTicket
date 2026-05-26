@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../theme/Color';
 
 const SlotCard = ({
   timing,
@@ -26,13 +27,13 @@ const SlotCard = ({
   const getStatusColor = () => {
     switch (status) {
       case 'Available':
-        return '#0a9413';
+        return Colors.available;
       case 'Filling Fast':
-        return '#ff9800';
+        return Colors.fillingFast;
       case 'Full':
-        return '#90797975';
+        return Colors.slotFull;
       default:
-        return '#0a9413';
+        return Colors.available;
     }
   };
 
@@ -75,19 +76,19 @@ const styles = StyleSheet.create({
   timeText: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.white,
     textAlign: 'center',
   },
   soundText: {
     fontSize: 9,
-    color: '#fff',
+    color: Colors.white,
     marginTop: 2,
     textAlign: 'center',
   },
   fullText: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.white,
     marginTop: 2,
   },
 });
