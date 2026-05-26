@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../theme/Color';
+import { Colors } from '../../theme/Color';
 
 export const styles = StyleSheet.create({
   container: {
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   formTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.infoText,
     marginBottom: 20,
   },
   payButton: {
@@ -95,7 +95,7 @@ export const styles = StyleSheet.create({
     color: Colors.infoText,
     marginBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: Colors.borderColor,
     paddingBottom: 6,
   },
   summaryRow: {

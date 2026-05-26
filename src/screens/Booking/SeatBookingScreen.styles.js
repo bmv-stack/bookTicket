@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   movieDetail: {
     fontSize: 12,
-    color: '#b3b3b3',
+    color: Colors.label,
     marginHorizontal: 4,
   },
   seatBase: {
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
   },
   seatReserved: {
     backgroundColor: Colors.white,
-    borderColor: '#bdbdbd',
+    borderColor: Colors.reservedSeat,
   },
   seatSelected: {
     backgroundColor: Colors.selectedSeat,
@@ -85,17 +85,17 @@ export const styles = StyleSheet.create({
   footer: {
     padding: 24,
     borderTopWidth: 1,
-    borderColor: '#eee',
-    backgroundColor: '#fafafa',
+    borderColor: Colors.white,
+    backgroundColor: Colors.white,
   },
   footerText: {
     fontSize: 16,
-    color: '#444',
+    color: Colors.infoText,
     marginBottom: 12,
   },
   bold: {
     fontWeight: 'bold',
-    color: '#222',
+    color: Colors.valueTitle,
   },
   bookButton: {
     backgroundColor: Colors.bookButton,

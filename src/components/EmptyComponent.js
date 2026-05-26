@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { Colors } from '../theme/Color';
 
 export default EmptyComponent = () => {
   return (
@@ -26,10 +27,10 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: Colors.infoText,
   },
   hintText: {
     fontSize: 13,
-    color: '#aaa',
+    color: Colors.hintText,
   },
 });

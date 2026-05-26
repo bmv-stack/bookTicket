@@ -43,7 +43,7 @@ const SearchScreen = () => {
           onChangeText={setInput}
           placeholder="Search movies..."
           autoCapitalize="none"
-          placeholderTextColor="#aaa"
+          placeholderTextColor={Colors.hintText}
         />
         {input.length > 0 && (
           <TouchableOpacity onPress={() => setInput('')}>
@@ -112,7 +112,7 @@ export default SearchScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: Colors.backgroundSecondary,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   clearIcon: {
     fontSize: 12,
-    color: '#aaa',
+    color: Colors.cross,
     padding: 4,
   },
   pillWrapperContainer: {

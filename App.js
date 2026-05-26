@@ -7,7 +7,7 @@ import SearchScreen from './src/screens/SearchScreen';
 import MovieDetailScreen from './src/screens/MovieDetailScreen';
 import BookingScreen from './src/screens/Booking/BookingScreen';
 import SeatBookingScreen from './src/screens/Booking/SeatBookingScreen';
-import PaymentScreen from './src/screens/PaymentScreen';
+import PaymentScreen from './src/screens/Payment/PaymentScreen';
 import UserProfileScreen from './src/screens/User/UserProfileScreen';
 import MyBookingsScreen from './src/screens/User/MyBookingsScreen';
 import { NavigationContainer } from '@react-navigation/native';

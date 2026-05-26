@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     shadowColor: Colors.shadowColor,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.8,
     shadowRadius: 10,
     elevation: 3,
   },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   movieTitle: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#111',
+    color: Colors.title,
   },
   durationRow: {
     flexDirection: 'row',

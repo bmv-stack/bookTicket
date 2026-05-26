@@ -47,9 +47,7 @@ const MyBookingCard = ({ item, onCancelled }) => {
         <View style={styles.detailItem}>
           <Icon name="location-outline" size={14} color={Colors.subtitle} />
           <Text style={styles.detailLabel}>Theatre</Text>
-          <Text style={styles.detailValue} numberOfLines={1}>
-            {item.theatre_name}
-          </Text>
+          <Text style={styles.detailValue}>{item.theatre_name}</Text>
         </View>
 
         <View style={styles.detailItem}>
@@ -114,12 +112,12 @@ const styles = StyleSheet.create({
   movieTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#111',
+    color: Colors.title,
     flex: 1,
     marginRight: 10,
   },
   priceBadge: {
-    backgroundColor: '#e8f5e9',
+    backgroundColor: Colors.priceBadgeBg,
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 20,
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
     color: Colors.priceText,
   },
   divider: {
-    height: StyleSheet.hairlineWidth,
+    height: 1,
     backgroundColor: Colors.white,
     marginBottom: 12,
   },
@@ -154,7 +152,7 @@ const styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: 13,
-    color: '#222',
+    color: Colors.valueTitle,
     fontWeight: '500',
   },
   cancelButton: {
@@ -166,7 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: Colors.cancelButtonBorder,
-    backgroundColor: '#fff5f5',
+    backgroundColor: Colors.cancelButtonBg,
   },
   cancelButtonText: {
     fontSize: 13,

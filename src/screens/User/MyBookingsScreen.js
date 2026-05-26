@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import MyBookingCard from '../../components/MyBookingCard';
 import { movieService } from '../../database/movieService';
 import { useAuth } from '../../contexts/AuthContext';
-import { Colors } from '../../theme/Color';
+import { styles } from './MyBookingScreen.styles';
 
-const MyBookingsScreen = ({ navigation }) => {
+const MyBookingsScreen = () => {
   //const myBookings = useSelector(state => state.booking.myBookings);
   const { user } = useAuth();
   const [bookings, setBookings] = useState([]);
@@ -45,39 +45,3 @@ const MyBookingsScreen = ({ navigation }) => {
 };
 
 export default MyBookingsScreen;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5', padding: 16 },
-  ticketCard: {
-    backgroundColor: Colors.white,
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
-    elevation: 2,
-  },
-  movieTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: Colors.infoText,
-    marginBottom: 4,
-  },
-  detailsText: { fontSize: 14, color: Colors.label, marginBottom: 2 },
-  priceText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: Colors.priceText,
-    marginTop: 4,
-  },
-  emptyList: {
-    flex: 1,
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emptyText: {
-    color: Colors.subtitle,
-    marginTop: 40,
-  },
-});

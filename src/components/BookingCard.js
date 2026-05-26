@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   noShowsSubText: {
     fontSize: 12,
-    color: '#aaa',
+    color: Colors.subtitle,
   },
   emptyIcon: {
     fontSize: 28,

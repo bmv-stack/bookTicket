@@ -7,15 +7,15 @@ import {
   Platform,
 } from 'react-native';
 import React, { useState } from 'react';
-import FormInput from '../components/formInput';
-import PaymentSuccessModal from '../components/Modals/PaymentSuccess';
+import FormInput from '../../components/formInput';
+import PaymentSuccessModal from '../../components/Modals/PaymentSuccess';
 import { styles } from './PaymentScreen.styles';
 //import { useDispatch } from 'react-redux';
 //import { addBooking } from '../redux/slices/bookingSlice';
-import { formatDate } from '../utils/formatDate';
-import { movieService } from '../database/movieService';
-import { useAuth } from '../contexts/AuthContext';
-import { Colors } from '../theme/Color';
+import { formatDate } from '../../utils/formatDate';
+import { movieService } from '../../database/movieService';
+import { useAuth } from '../../contexts/AuthContext';
+import { Colors } from '../../theme/Color';
 import { useTranslation } from 'react-i18next';
 
 const PaymentScreen = ({ route, navigation }) => {

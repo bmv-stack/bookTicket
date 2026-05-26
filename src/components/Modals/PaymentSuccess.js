@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: '100%',
-    height: StyleSheet.hairlineWidth,
+    height: 1,
     backgroundColor: Colors.divider,
     marginBottom: 20,
   },
