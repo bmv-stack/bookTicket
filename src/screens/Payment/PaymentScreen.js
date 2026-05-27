@@ -87,10 +87,11 @@ const PaymentScreen = ({ route, navigation }) => {
           </View>
 
           {[
-            { label: 'Movie', value: movieName.name },
-            { label: 'Theatre', value: theatre.name },
+            { label: 'Movie', value: movieName?.name },
+            { label: 'Theatre', value: theatre?.name },
             { label: 'Date', value: formatDate(date) },
-            { label: 'Slot', value: slot.time },
+            { label: 'Slot', value: slot?.time },
+            { label: 'Screen', value: slot?.screenName },
           ].map(({ label, value }) => (
             <View key={label} style={styles.summaryRow}>
               <Text style={styles.summaryLabel}>{label}</Text>

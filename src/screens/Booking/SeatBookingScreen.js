@@ -9,7 +9,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { movie, theatre, slot } = route.params;
   const date = route.params?.date;
-  console.log('Date on Payment Screen: ', date);
+  console.log('Slots: ', slot);
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const totalPrice = slot.price * selectedSeats.length;
@@ -74,6 +74,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
       selectedSeats: selectedSeats,
       slot: slot,
       date: date,
+      screen: slot.screenName,
     });
   };
   const isSeatSelected = selectedSeats.length > 0;
@@ -119,6 +120,7 @@ const SeatBookingScreen = ({ navigation, route }) => {
         </View>
       </View>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={seats}
         keyExtractor={item => item.id}
         renderItem={renderSeats}

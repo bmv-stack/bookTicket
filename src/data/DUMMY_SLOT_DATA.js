@@ -6,7 +6,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '10:00 AM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 2,
     price: 180,
   },
   {
@@ -16,7 +16,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '12:30 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 2,
     price: 180,
   },
   {
@@ -26,7 +26,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '3:00 PM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 2,
     price: 180,
   },
   {
@@ -36,7 +36,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '5:30 PM',
     status: 'Full',
-    soundSystem: 'Dolby Atmos',
+    screenId: 2,
     price: 200,
   },
   {
@@ -48,7 +48,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '8:00 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 2,
     price: 220,
   },
   {
@@ -60,7 +60,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '10:30 PM',
     status: 'Available',
-    soundSystem: 'Amour',
+    screenId: 2,
     price: 180,
   },
   {
@@ -70,7 +70,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '11:00 AM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 2,
     price: 140,
   },
   {
@@ -80,7 +80,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '2:30 PM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 170,
   },
   {
@@ -90,7 +90,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '6:00 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 200,
   },
   {
@@ -102,7 +102,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '9:00 AM',
     status: 'Available',
-    soundSystem: 'Amour',
+    screenId: 1,
     price: 120,
   },
   {
@@ -114,7 +114,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '1:00 PM',
     status: 'Full',
-    soundSystem: '2K',
+    screenId: 1,
     price: 160,
   },
   {
@@ -124,7 +124,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '10:15 AM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 160,
   },
   {
@@ -134,7 +134,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '8:30 PM',
     status: 'Available',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 230,
   },
   {
@@ -146,7 +146,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '7:00 PM',
     status: 'Filling Fast',
-    soundSystem: 'Amour',
+    screenId: 1,
     price: 210,
   },
   {
@@ -158,10 +158,9 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '4:00 PM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
-  // --- NEWLY ADDED ENTRIES (16 to 35) ---
   {
     id: '16',
     theatreId: '1',
@@ -169,7 +168,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '01:15 PM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 190,
   },
   {
@@ -179,7 +178,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '09:00 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 250,
   },
   {
@@ -189,7 +188,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '01:45 PM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 1,
     price: 150,
   },
   {
@@ -199,7 +198,7 @@ export const DUMMY_SLOT_DATA = [
     date: new Date().toISOString().split('T')[0],
     time: '04:30 PM',
     status: 'Full',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
   {
@@ -211,7 +210,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '11:00 AM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
   {
@@ -223,7 +222,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '02:00 PM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 1,
     price: 170,
   },
   {
@@ -235,7 +234,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '07:15 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 220,
   },
   {
@@ -247,7 +246,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '10:00 PM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 190,
   },
   {
@@ -259,7 +258,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '10:30 AM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 1,
     price: 140,
   },
   {
@@ -271,7 +270,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '01:15 PM',
     status: 'Filling Fast',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
   {
@@ -283,7 +282,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '04:15 PM',
     status: 'Available',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 240,
   },
   // Day after tomorrow slots
@@ -296,7 +295,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '10:00 AM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
   {
@@ -308,7 +307,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '03:30 PM',
     status: 'Available',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 200,
   },
   {
@@ -320,7 +319,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '06:45 PM',
     status: 'Filling Fast',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 210,
   },
   {
@@ -332,7 +331,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '11:30 AM',
     status: 'Available',
-    soundSystem: '2K',
+    screenId: 1,
     price: 140,
   },
   {
@@ -344,7 +343,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '03:00 PM',
     status: 'Available',
-    soundSystem: 'Amour',
+    screenId: 1,
     price: 160,
   },
   {
@@ -356,7 +355,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '08:30 PM',
     status: 'Available',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 230,
   },
   {
@@ -368,7 +367,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '12:00 PM',
     status: 'Available',
-    soundSystem: 'Dolby Atmos',
+    screenId: 1,
     price: 180,
   },
   {
@@ -380,7 +379,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '05:00 PM',
     status: 'Filling Fast',
-    soundSystem: 'IMAX',
+    screenId: 1,
     price: 220,
   },
   {
@@ -392,7 +391,7 @@ export const DUMMY_SLOT_DATA = [
       .split('T')[0],
     time: '09:15 PM',
     status: 'Full',
-    soundSystem: '2K',
+    screenId: 1,
     price: 170,
   },
 ];

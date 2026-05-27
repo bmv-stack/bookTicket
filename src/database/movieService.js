@@ -50,17 +50,25 @@ export const movieService = {
       s.time AS slotTime, 
       s.price AS ticketPrice, 
       s.status AS slotStatus, 
-      s.sound_system AS SoundSystem, 
+      scr.name AS screenName,
+      scr.sound_system AS soundSystem,
+      scr.capacity AS screenCapacity,
       t.id AS theatreId, 
       t.name AS theatreName, 
       t.brand AS theatreBrand, 
       t.city AS theatreCity 
       FROM slots s 
-      INNER JOIN theatres t On s.theatre_id = t.id 
+      INNER JOIN theatres t ON s.theatre_id = t.id
+      INNER JOIN screens scr ON s.screen_id = scr.id
       WHERE s.movie_id = ? AND s.date = ?;`;
 
       const result = await db.execute(query, [Number(movieId), selectedDate]);
       if (result && result.rows) {
+        const checkSlots = await db.execute('SELECT * FROM slots');
+        console.log('All slots:', JSON.stringify(checkSlots.rows));
+
+        const checkScreens = await db.execute('SELECT * FROM screens');
+        console.log('All screens:', JSON.stringify(checkScreens.rows));
         return result.rows || [];
       }
       return [];
@@ -118,12 +126,14 @@ export const movieService = {
     b.payable_amount, 
     b.booking_date, 
     s.time AS slot_time, 
+    scr.name AS screen_name,
     m.name AS movie_name, 
     m.image AS movie_image, 
     t.name AS theatre_name, 
     t.brand AS theatre_brand 
     FROM bookings b 
     INNER JOIN slots s ON b.slot_id = s.id 
+    INNER JOIN screens scr ON s.screen_id = scr.id
     INNER JOIN movies m ON s.movie_id = m.id 
     INNER JOIN theatres t ON s.theatre_id = t.id 
     WHERE b.user_id = ? 

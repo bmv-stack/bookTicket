@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
 import { styles } from './SignUpScreen.styles';
 import { movieService } from '../../database/movieService';
+import { useAuth } from '../../contexts/AuthContext';
 import { Colors } from '../../theme/Color';
 
 const SignUpScreen = ({ navigation }) => {
+  const { login } = useAuth();
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -49,6 +51,10 @@ const SignUpScreen = ({ navigation }) => {
     if (!result) {
       Alert.alert('Unable to add the user, please try again later');
       return;
+    }
+    const newUser = await movieService.logUser(form.email, form.password);
+    if (newUser) {
+      await login(newUser);
     }
     Alert.alert('Success', 'Account created successfully!');
     navigation.navigate('Home', { username: form.firstName });

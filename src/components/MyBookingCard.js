@@ -65,6 +65,12 @@ const MyBookingCard = ({ item, onCancelled }) => {
         </View>
 
         <View style={styles.detailItem}>
+          <Icon name="tv-sharp" size={14} color={Colors.subtitle} />
+          <Text style={styles.detailLabel}>Screen</Text>
+          <Text style={styles.detailValue}>{item.screen_name}</Text>
+        </View>
+
+        <View style={styles.detailItem}>
           <Icon name="ticket-outline" size={14} color={Colors.subtitle} />
           <Text style={styles.detailLabel}>Seats</Text>
           <Text style={styles.detailValue} numberOfLines={1}>

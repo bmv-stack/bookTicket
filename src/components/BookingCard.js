@@ -11,6 +11,12 @@ const BookingCard = ({
   selectedDate,
   navigation,
 }) => {
+  const slotsByScreen = slots.reduce((acc, slot) => {
+    const key = slot.screenName || 'Screen';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(slot);
+    return acc;
+  }, {});
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -24,25 +30,38 @@ const BookingCard = ({
 
       <View style={styles.slotsContainer}>
         {slots.length > 0 ? (
-          <FlatList
-            scrollEnabled={false}
-            numColumns={3}
-            columnWrapperStyle={styles.row}
-            data={slots}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => (
-              <SlotCard
-                timing={item.time}
-                sound={item.soundSystem}
-                status={item.status}
-                movie={movie}
-                theatre={{ brand: theatreBrand, name: theatreName }}
-                slot={item}
-                navigation={navigation}
-                date={selectedDate}
+          Object.entries(slotsByScreen).map(([screenName, screenSlots]) => (
+            <View key={screenName} style={styles.screenGroup}>
+              <View style={styles.screenHeader}>
+                <View style={styles.screenBadge}>
+                  <Text style={styles.screenBadgeText}>{screenName}</Text>
+                </View>
+                <Text style={styles.screenSound}>
+                  {screenSlots[0]?.soundSystem}
+                </Text>
+              </View>
+
+              <FlatList
+                scrollEnabled={false}
+                numColumns={3}
+                columnWrapperStyle={styles.row}
+                data={screenSlots}
+                keyExtractor={item => String(item.id)}
+                renderItem={({ item }) => (
+                  <SlotCard
+                    timing={item.time}
+                    sound={item.soundSystem}
+                    status={item.status}
+                    movie={movie}
+                    theatre={{ brand: theatreBrand, name: theatreName }}
+                    slot={item}
+                    navigation={navigation}
+                    date={selectedDate}
+                  />
+                )}
               />
-            )}
-          />
+            </View>
+          ))
         ) : (
           <View style={styles.emptyContainer}>
             <Text style={styles.emptyIcon}>🎬</Text>
@@ -99,6 +118,34 @@ const styles = StyleSheet.create({
   },
   slotsContainer: {
     marginTop: 8,
+  },
+  screenGroup: {
+    marginBottom: 12,
+  },
+  screenHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    paddingHorizontal: 4,
+  },
+  screenBadge: {
+    backgroundColor: Colors.backgroundSecondary,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: Colors.white,
+  },
+  screenBadgeText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: Colors.infoText,
+  },
+  screenSound: {
+    fontSize: 11,
+    color: Colors.subtitle,
+    fontWeight: '500',
   },
   row: {
     flexGrow: 1,

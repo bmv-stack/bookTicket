@@ -32,7 +32,9 @@ const BookingScreen = ({ route, navigation }) => {
         time: slot.slotTime,
         price: slot.ticketPrice,
         status: slot.slotStatus,
-        soundSystem: slot.SoundSystem,
+        screenName: slot.screenName,
+        soundSystem: slot.soundSystem,
+        capacity: slot.capacity,
       });
     });
 
@@ -47,6 +49,7 @@ const BookingScreen = ({ route, navigation }) => {
         movie.id,
         selectedDate,
       );
+      console.log(flatSlots);
       const groupedData = groupSlotsByTheatre(flatSlots);
       setSlotTheatres(groupedData);
     };
@@ -73,7 +76,7 @@ const BookingScreen = ({ route, navigation }) => {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={slotTheatres}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
         contentContainerStyle={slotTheatres.length === 0 && { flexGrow: 1 }}
         renderItem={({ item }) => (
           <BookingCard
