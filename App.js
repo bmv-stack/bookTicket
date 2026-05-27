@@ -28,7 +28,7 @@ const RootStack = ({ initialRoute }) => {
     <Stack.Navigator
       screenOptions={{
         //headerShown: false,
-        contentStyle: { backgroundColor: '#fff' },
+        contentStyle: { backgroundColor: Colors.white },
       }}
       initialRouteName={initialRoute}
     >

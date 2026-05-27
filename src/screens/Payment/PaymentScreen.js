@@ -17,6 +17,7 @@ import { movieService } from '../../database/movieService';
 import { useAuth } from '../../contexts/AuthContext';
 import { Colors } from '../../theme/Color';
 import { useTranslation } from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const PaymentScreen = ({ route, navigation }) => {
   const { t } = useTranslation();
@@ -80,67 +81,69 @@ const PaymentScreen = ({ route, navigation }) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.bookingSummaryContainer}>
-          <Text style={styles.summaryTitle}>Booking Summary</Text>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Movie: </Text>
-            <Text style={styles.summaryValue}>{movieName.name}</Text>
+          <View style={styles.summaryHeader}>
+            <Icon name="ticket-outline" size={18} color={Colors.title} />
+            <Text style={styles.summaryTitle}>Booking Summary</Text>
           </View>
 
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Theatre: </Text>
-            <Text style={styles.summaryValue}>{theatre.name}</Text>
-          </View>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Date: </Text>
-            <Text style={styles.summaryValue}>{formatDate(date)}</Text>
-          </View>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Slot: </Text>
-            <Text style={styles.summaryValue}>{slot.time}</Text>
-          </View>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Seats: </Text>
-            <Text style={[styles.summaryValue, { color: Colors.seatsText }]}>
-              {Array.isArray(selectedSeats)
-                ? selectedSeats.join(',')
-                : selectedSeats}
-            </Text>
+          {[
+            { label: 'Movie', value: movieName.name },
+            { label: 'Theatre', value: theatre.name },
+            { label: 'Date', value: formatDate(date) },
+            { label: 'Slot', value: slot.time },
+          ].map(({ label, value }) => (
+            <View key={label} style={styles.summaryRow}>
+              <Text style={styles.summaryLabel}>{label}</Text>
+              <Text style={styles.summaryValue}>{value}</Text>
+            </View>
+          ))}
+          <View style={[styles.summaryRow, styles.seatsRow]}>
+            <Text style={styles.summaryLabel}>Seats</Text>
+            <View style={styles.seatPillsRow}>
+              {(Array.isArray(selectedSeats)
+                ? selectedSeats
+                : selectedSeats.split(',')
+              ).map(seat => (
+                <View key={seat} style={styles.seatPill}>
+                  <Text style={styles.seatPillText}>{seat.trim()}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         </View>
+
         <View style={styles.invoiceContainer}>
-          <View style={styles.rowContainer}>
-            <Text style={styles.priceLabel}>Ticket Price:</Text>
-            <Text style={styles.priceText}>₹{totalPrice}</Text>
+          <Text style={styles.invoiceTitle}>Price Breakdown</Text>
+
+          <View style={styles.invoiceRow}>
+            <Text style={styles.invoiceLabel}>Ticket Price</Text>
+            <Text style={styles.invoiceValue}>₹{totalPrice}</Text>
           </View>
-          <View style={styles.rowContainer}>
-            <Text style={styles.priceLabel}>GST (18%):</Text>
-            <Text style={styles.priceText}>₹{gst.toFixed(1)}</Text>
+          <View style={styles.invoiceRow}>
+            <Text style={styles.invoiceLabel}>GST (18%)</Text>
+            <Text style={styles.invoiceValue}>₹{gst.toFixed(2)}</Text>
           </View>
-          <View style={styles.rowContainer}>
-            <Text style={styles.priceLabel}>Convenience Fees:</Text>
-            <Text style={styles.priceText}>₹{convenienceFess}</Text>
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.finalAmountContainer}>
-            <Text
-              style={[styles.priceLabel, { fontWeight: 'bold', fontSize: 18 }]}
-            >
-              Payable Amount:
+          <View style={styles.invoiceRow}>
+            <Text style={styles.invoiceLabel}>Convenience Fee</Text>
+            <Text style={styles.invoiceValue}>
+              ₹{convenienceFess.toFixed(2)}
             </Text>
-            <Text
-              style={[styles.priceText, { fontWeight: 'bold', fontSize: 18 }]}
-            >
-              ₹{payableAmount}
-            </Text>
+          </View>
+
+          <View style={styles.invoiceDivider} />
+
+          <View style={styles.totalRow}>
+            <Text style={styles.totalLabel}>Total Payable</Text>
+            <Text style={styles.totalValue}>₹{payableAmount.toFixed(2)}</Text>
           </View>
         </View>
 
         <View style={styles.formContainer}>
-          <Text style={styles.formTitle}>Payment Details</Text>
+          <View style={styles.formHeader}>
+            <Icon name="card-outline" size={18} color={Colors.title} />
+            <Text style={styles.formTitle}>Payment Details</Text>
+          </View>
+
           <FormInput
             label="Card Number"
             placeholder="XXXX XXXX XXXX XXXX"
@@ -157,14 +160,22 @@ const PaymentScreen = ({ route, navigation }) => {
           />
           <FormInput
             label="CVV"
-            placeholder="000"
+            placeholder="•••"
             value={form.cvv}
             onChangeText={text => onChangeText('cvv', text)}
             keyboardType="numeric"
             secureTextEntry
           />
-          <TouchableOpacity style={styles.payButton} onPress={handlePayment}>
-            <Text style={styles.payButtonText}>{t('common.payment')}</Text>
+
+          <TouchableOpacity
+            style={styles.payButton}
+            onPress={handlePayment}
+            activeOpacity={0.85}
+          >
+            <Icon name="lock-closed" size={16} color={Colors.white} />
+            <Text style={styles.payButtonText}>
+              Pay ₹{payableAmount.toFixed(2)}
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
