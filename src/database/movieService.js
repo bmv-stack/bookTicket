@@ -64,16 +64,11 @@ export const movieService = {
 
       const result = await db.execute(query, [Number(movieId), selectedDate]);
       if (result && result.rows) {
-        const checkSlots = await db.execute('SELECT * FROM slots');
-        console.log('All slots:', JSON.stringify(checkSlots.rows));
-
-        const checkScreens = await db.execute('SELECT * FROM screens');
-        console.log('All screens:', JSON.stringify(checkScreens.rows));
         return result.rows || [];
       }
       return [];
     } catch (error) {
-      console.error('Uable to load slots for movies: ', error);
+      console.error('Unable to load slots for movies: ', error);
     }
   },
   getBookedSeats: async slotId => {
