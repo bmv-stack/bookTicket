@@ -83,7 +83,9 @@ const PaymentScreen = ({ route, navigation }) => {
         <View style={styles.bookingSummaryContainer}>
           <View style={styles.summaryHeader}>
             <Icon name="ticket-outline" size={18} color={Colors.title} />
-            <Text style={styles.summaryTitle}>Booking Summary</Text>
+            <Text style={styles.summaryTitle}>
+              {t('payment.bookingSummary')}
+            </Text>
           </View>
 
           {[
@@ -114,7 +116,7 @@ const PaymentScreen = ({ route, navigation }) => {
         </View>
 
         <View style={styles.invoiceContainer}>
-          <Text style={styles.invoiceTitle}>Price Breakdown</Text>
+          <Text style={styles.invoiceTitle}>{t('payment.price')}</Text>
 
           <View style={styles.invoiceRow}>
             <Text style={styles.invoiceLabel}>Ticket Price</Text>
@@ -142,7 +144,7 @@ const PaymentScreen = ({ route, navigation }) => {
         <View style={styles.formContainer}>
           <View style={styles.formHeader}>
             <Icon name="card-outline" size={18} color={Colors.title} />
-            <Text style={styles.formTitle}>Payment Details</Text>
+            <Text style={styles.formTitle}>{t('payment.payDetails')}</Text>
           </View>
 
           <FormInput
@@ -175,7 +177,7 @@ const PaymentScreen = ({ route, navigation }) => {
           >
             <Icon name="lock-closed" size={16} color={Colors.white} />
             <Text style={styles.payButtonText}>
-              Pay ₹{payableAmount.toFixed(2)}
+              {t('common.payment')} ₹{payableAmount.toFixed(2)}
             </Text>
           </TouchableOpacity>
         </View>

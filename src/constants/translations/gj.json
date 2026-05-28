@@ -10,5 +10,10 @@
         "paymentModal": "ચુકવણી સફળ રહી",
         "donePayment": "થઈ ગયું",
         "cancelBooking": "બુકિંગ રદ કરો"
+    },
+    "payment":{
+        "bookingSummary": "બુકિંગ સારાંશ",
+        "price": "કિંમતનું વિભાજન",
+        "payDetails": "ચુકવણીની વિગતો"
     }
 }

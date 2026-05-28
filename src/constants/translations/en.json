@@ -10,5 +10,10 @@
         "paymentModal": "Payment Successful",
         "donePayment": "Done",
         "cancelBooking": "Cancel Booking"
+    },
+    "payment":{
+        "bookingSummary": "Booking Summary",
+        "price": "Price Breakdown",
+        "payDetails": "Payment Details"
     }
 }
