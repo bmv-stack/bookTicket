@@ -1,4 +1,12 @@
-import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
 import { styles } from './SignUpScreen.styles';
@@ -65,76 +73,88 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.formContainer}>
-        <Text style={styles.titleText}>Ticket Booking App</Text>
-
-        <View style={styles.rowContainer}>
-          <View style={styles.halfWidthContainer}>
-            <FormInput
-              label="First Name"
-              placeholder="Enter first name"
-              value={form.firstName}
-              onChangeText={text => onChangeText('firstName', text)}
-            />
-          </View>
-          <View style={styles.halfWidthContainer}>
-            <FormInput
-              label="Last Name"
-              placeholder="Enter last name"
-              value={form.lastName}
-              onChangeText={text => onChangeText('lastName', text)}
-            />
-          </View>
-        </View>
-
-        <View style={styles.fieldsContainer}>
-          <FormInput
-            label="Email"
-            placeholder="Enter your email"
-            value={form.email}
-            onChangeText={text => onChangeText('email', text)}
-            keyboardType="email-address"
-          />
-          <FormInput
-            label="Set Password"
-            placeholder="Enter your password"
-            value={form.password}
-            onChangeText={text => onChangeText('password', text)}
-            //secureTextEntry
-          />
-          <FormInput
-            label="Confirm Password"
-            placeholder="Confirm your password"
-            value={form.confirmPassword}
-            onChangeText={text => onChangeText('confirmPassword', text)}
-            //secureTextEntry
-          />
-        </View>
-
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Create Account</Text>
-        </TouchableOpacity>
-
-        <View style={styles.navigationContainer}>
-          <Text style={styles.navigationText}>Already have an account? </Text>
-          <TouchableOpacity onPress={handleBackToLogin}>
-            <Text
-              style={[
-                styles.navigationText,
-                {
-                  color: Colors.navigationLink,
-                  textDecorationLine: 'underline',
-                },
-              ]}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ flex: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.container}>
+          <View style={styles.formContainer}>
+            <Text style={styles.titleText}>Ticket Booking App</Text>
+            <View style={styles.rowContainer}>
+              <View style={styles.halfWidthContainer}>
+                <FormInput
+                  label="First Name"
+                  placeholder="Enter first name"
+                  value={form.firstName}
+                  onChangeText={text => onChangeText('firstName', text)}
+                />
+              </View>
+              <View style={styles.halfWidthContainer}>
+                <FormInput
+                  label="Last Name"
+                  placeholder="Enter last name"
+                  value={form.lastName}
+                  onChangeText={text => onChangeText('lastName', text)}
+                />
+              </View>
+            </View>
+            <View style={styles.fieldsContainer}>
+              <FormInput
+                label="Email"
+                placeholder="Enter your email"
+                value={form.email}
+                onChangeText={text => onChangeText('email', text)}
+                keyboardType="email-address"
+              />
+              <FormInput
+                label="Set Password"
+                placeholder="Enter your password"
+                value={form.password}
+                onChangeText={text => onChangeText('password', text)}
+                //secureTextEntry
+              />
+              <FormInput
+                label="Confirm Password"
+                placeholder="Confirm your password"
+                value={form.confirmPassword}
+                onChangeText={text => onChangeText('confirmPassword', text)}
+                //secureTextEntry
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={handleSubmit}
             >
-              {' '}
-              Login
-            </Text>
-          </TouchableOpacity>
+              <Text style={styles.submitButtonText}>Create Account</Text>
+            </TouchableOpacity>
+            <View style={styles.navigationContainer}>
+              <Text style={styles.navigationText}>
+                Already have an account?{' '}
+              </Text>
+              <TouchableOpacity onPress={handleBackToLogin}>
+                <Text
+                  style={[
+                    styles.navigationText,
+                    {
+                      color: Colors.navigationLink,
+                      textDecorationLine: 'underline',
+                    },
+                  ]}
+                >
+                  {' '}
+                  Login
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
